@@ -1,0 +1,81 @@
+{
+  "name": "px-map",
+  "version": "3.4.0",
+  "description": "A lightweight framework for building interactive maps with web components",
+  "main": [
+    "px-map.html"
+  ],
+  "ignore": [
+    "*.enc",
+    ".*",
+    "npm-debug.log",
+    "gulpfile.js",
+    "sass",
+    "bower_components",
+    "node_modules",
+    "test",
+    "OSS_Notice.pdf",
+    "scripts",
+    ".github",
+    "px-map.png",
+    "LICENSE.md",
+    "CONTRIBUTING.md",
+    "HISTORY.md",
+    "README.md",
+    ".jshintrc",
+    ".editorconfig",
+    "polymer.json"
+  ],
+  "dependencies": {
+    "app-localize-behavior": "^2.0.0",
+    "polymer": "#1.9 - 2",
+    "px-d3-imports": "^3.0.0",
+    "leaflet": "^1.0.3",
+    "leaflet.markercluster": "^1.3.0",
+    "leaflet-bing-tiles": "^1.0.0",
+    "leaflet-google-tiles": "ge-smallworld/leaflet-google-layer#^1.0.0",
+    "px-icon-set": "^2.0.0",
+    "px-app-helpers": "^2.0.0"
+  },
+  "devDependencies": {
+    "px-clearfix-design": "^1.0.0",
+    "px-meta-buttons-design": "^1.0.0",
+    "px-layout-design": "^1.0.0",
+    "px-starter-kit-design": "^1.0.0",
+    "px-typography-design": "^2.0.0",
+    "iron-ajax": "^2.0.0",
+    "promise-polyfill": "polymerlabs/promise-polyfill#^2.0.1",
+    "px-theme": "^3.0.0",
+    "px-demo": "^3.0.0",
+    "iron-icons": "^2.0.0",
+    "web-component-tester": "^6.3.0"
+  },
+  "resolutions": {
+    "webcomponentsjs": "^1.0.0"
+  },
+  "variants": {
+    "1.x": {
+      "dependencies": {
+        "polymer": "^1.9.0"
+      },
+      "devDependencies": {
+        "web-component-tester": "^5.0.0"
+      },
+      "resolutions": {
+        "webcomponentsjs": "^0.7.0"
+      }
+    }
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/predixdesignsystem/px-map",
+  "_release": "3.4.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v3.4.0",
+    "commit": "7fe99f75d659e69b75ae4a266736c0eb09623db6"
+  },
+  "_source": "https://github.com/predixdesignsystem/px-map.git",
+  "_target": "^3.4.0",
+  "_originalSource": "px-map",
+  "_direct": true
+}

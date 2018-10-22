@@ -1,0 +1,68 @@
+{
+  "name": "px-app-nav",
+  "description": "A navigation component that allows the user to browse app pages and content",
+  "version": "2.1.7",
+  "main": [
+    "px-app-nav.html"
+  ],
+  "ignore": [
+    "*.enc",
+    ".*",
+    "npm-debug.log",
+    "gulpfile.js",
+    "sass",
+    "bower_components",
+    "node_modules",
+    "test",
+    "OSS_Notice.pdf",
+    "scripts",
+    ".github",
+    "px-app-nav.png",
+    "polymer.json"
+  ],
+  "dependencies": {
+    "polymer": "#1.9 - 2",
+    "px-app-helpers": "^2.0.0",
+    "px-icon-set": "^2.1.0",
+    "neon-animation": "^2.0.0",
+    "iron-dropdown": "^2.0.0",
+    "iron-resizable-behavior": "^2.0.0",
+    "web-animations-js": "^2.2.0"
+  },
+  "devDependencies": {
+    "px-box-sizing-design": "^1.0.0",
+    "px-colors-design": "^1.0.0",
+    "px-defaults-design": "^2.0.0",
+    "px-demo": "^3.0.0",
+    "px-login": "^2.2.1",
+    "px-shadows-design": "^1.0.0",
+    "web-component-tester": "^6.0.0",
+    "px-icon-set": "^2.1.2"
+  },
+  "resolutions": {
+    "webcomponentsjs": "^1.0.0"
+  },
+  "variants": {
+    "1.x": {
+      "dependencies": {
+        "polymer": "^1.9.0"
+      },
+      "devDependencies": {
+        "web-component-tester": "^5.0.0"
+      },
+      "resolutions": {
+        "webcomponentsjs": "^0.7.0"
+      }
+    }
+  },
+  "homepage": "https://github.com/predixdesignsystem/px-app-nav",
+  "_release": "2.1.7",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.1.7",
+    "commit": "99bbb2284750bcca79c41c9697ae40c7f2519c10"
+  },
+  "_source": "https://github.com/predixdesignsystem/px-app-nav.git",
+  "_target": "^2.0.0",
+  "_originalSource": "px-app-nav"
+}

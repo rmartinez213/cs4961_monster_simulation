@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link defer rel="icon" href="favicon.ico" type="image/x-icon" />
+    <title>Predix UI</title>
+
+    <!-- Load polyfill and Polymer -->
+    <script src="../webcomponentsjs/webcomponents-loader.js"></script>
+    <link rel="import" href="../polymer/polymer.html" />
+
+    <!-- Load demo component -->
+    <link rel="import" href="demo/px-mixins-design-demo.html" />
+
+    <!-- Basic document styles -->
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+
+    <!-- Load and apply theme -->
+    <link rel="import" href="../px-theme/px-theme-styles.html" />
+    <custom-style>
+      <style include="px-theme-styles" is="custom-style"></style>
+    </custom-style>
+  </head>
+  <body>
+    <px-mixins-design-demo></px-mixins-design-demo>
+  </body>
+</html>

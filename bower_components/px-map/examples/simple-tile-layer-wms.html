@@ -1,0 +1,59 @@
+<!--
+Copyright (c) 2018, General Electric
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Map Demo -- Simple WMS Tile Layer</title>
+
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../polymer/polymer.html"/>
+
+  <!-- Importing px-map subcomponents... -->
+  <link rel="import" href="../px-map.html"/>
+  <link rel="import" href="../px-map-tile-layer-wms.html"/>
+
+  <style>
+    body {
+      margin: 0;
+    }
+    .wrap {
+      display: flex;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <section class="wrap">
+    <px-map zoom="10" flex-to-size>
+      <!-- Simple WMS example -->
+      <px-map-tile-layer-wms
+          url="https://demo.boundlessgeo.com/geoserver/ows?"
+          layers="ne:ne"
+          attribution="Map data © Boundless Geo">
+      </px-map-tile-layer-wms>
+
+      <!-- NOAA WMS meteorology example -->
+      <!-- <px-map-tile-layer-wms
+          url="https://nowcoast.noaa.gov/arcgis/services/nowcoast/sat_meteo_imagery_time/MapServer/WMSServer?"
+          layers="1"
+          format="image/png"
+          attribution="Map data courtesy NOAA">
+      </px-map-tile-layer-wms> -->
+    </px-map>
+  </section>
+</body>
+</html>

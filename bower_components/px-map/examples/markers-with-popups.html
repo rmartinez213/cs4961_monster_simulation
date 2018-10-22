@@ -1,0 +1,234 @@
+<!--
+Copyright (c) 2018, General Electric
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Map Demo -- Map With Markers</title>
+
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../polymer/polymer.html"/>
+
+  <!-- Importing px-map subcomponents... -->
+  <link rel="import" href="../px-map.html"/>
+  <link rel="import" href="../px-map-tile-layer.html"/>
+  <link rel="import" href="../px-map-control-zoom.html"/>
+  <link rel="import" href="../px-map-layer-group.html"/>
+  <link rel="import" href="../px-map-marker-static.html"/>
+  <link rel="import" href="../px-map-marker-symbol.html"/>
+  <link rel="import" href="../px-map-popup-info.html"/>
+  <link rel="import" href="../px-map-popup-data.html"/>
+
+  <style>
+    body {
+      margin: 0;
+    }
+    .wrap {
+      display: flex;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <custom-style>
+    <style is="custom-style">
+      :root {
+        --px-map-icon-warning-color: salmon;
+      }
+    </style>
+  </custom-style>
+
+  <section class="wrap">
+    <px-map fit-to-markers flex-to-size>
+      <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
+
+      <px-map-layer-group name="BART Stations">
+        <px-map-marker-symbol lat="38.0154" lng="-121.9424" type="unknown" icon="px-obj:train">
+          <px-map-popup-data title="BART: Pittsburg/Baypoint" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-symbol>
+
+        <px-map-marker-symbol lat="38.0035" lng="-122.0247" type="info">
+          <px-map-popup-data title="BART: North Concord/Martinez" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-symbol>
+
+        <px-map-marker-symbol lat="37.9741" lng="-122.0282" type="warning">
+          <px-map-popup-data title="BART: Concord" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-symbol>
+
+        <px-map-marker-symbol lat="37.9269" lng="-122.0559" type="important">
+          <px-map-popup-data title="BART: Pleasant Hill" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-symbol>
+
+        <px-map-marker-static lat="37.9049" lng="-122.0671" type="unknown">
+          <px-map-popup-data title="BART: Walnut Creek" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.8936" lng="-122.1259" type="info">
+          <px-map-popup-data title="BART: Lafayette" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.8785" lng="-122.1833" type="warning">
+          <px-map-popup-data title="BART: Orinda" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.8446" lng="-122.2516" type="important">
+          <px-map-popup-data title="BART: Rockridge" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.8294" lng="-122.2660" type="info">
+          <px-map-popup-data title="BART: MacArthur" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.8079" lng="-122.2687" type="info">
+          <px-map-popup-data title="BART: 19th Street/Oakland" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.8033" lng="-122.2719" type="info">
+          <px-map-popup-data title="BART: Oakland City Center/12th Street" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.8053" lng="-122.2951" type="important">
+          <px-map-popup-data title="BART: West Oakland" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.7925" lng="-122.3971" type="info">
+          <px-map-popup-data title="BART: Embarcadero" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.7890" lng="-122.4018" type="info">
+          <px-map-popup-data title="BART: Montgomery Street" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.7839" lng="-122.4078" type="info">
+          <px-map-popup-data title="BART: Powell Street" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.7798" lng="-122.4137" type="info">
+          <px-map-popup-data title="BART: Civic Center" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.7648" lng="-122.4198" type="info">
+          <px-map-popup-data title="BART: 16th Street Mission" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.7519" lng="-122.4185" type="info">
+          <px-map-popup-data title="BART: 24th Street Mission" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.7333" lng="-122.4342" type="info">
+          <px-map-popup-data title="BART: Glen Park" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.7211" lng="-122.4476" type="info">
+          <px-map-popup-data title="BART: Balboa Park" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.7051" lng="-122.4693" type="important">
+          <px-map-popup-data title="BART: Daly City" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.6835" lng="-122.4635" type="info">
+          <px-map-popup-data title="BART: Colma" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.6643" lng="-122.4429" type="info">
+          <px-map-popup-data title="BART: South San Francisco" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.6394" lng="-122.4184" type="info">
+          <px-map-popup-data title="BART: San Bruno" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.6152" lng="-122.3933" type="info">
+          <px-map-popup-data title="BART: San Francisco Intl Airport" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.6005" lng="-122.3840" type="info">
+          <px-map-popup-data title="BART: Millbrae" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.9369" lng="-122.3515" type="unknown">
+          <px-map-popup-data title="BART: Richmond" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.9257" lng="-122.3175" type="info">
+          <px-map-popup-data title="BART: El Cerrito del Norte" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.9016" lng="-122.3001" type="info">
+          <px-map-popup-data title="BART: El Cerrito Plaza" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.8737" lng="-122.2825" type="info">
+          <px-map-popup-data title="BART: North Berkeley" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.8700" lng="-122.2680" type="info">
+          <px-map-popup-data title="BART: Berkeley (Downtown)" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.8511" lng="-122.2707" type="info">
+          <px-map-popup-data title="BART: Ashby" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.7970" lng="-122.2652" type="info">
+          <px-map-popup-data title="BART: Lake Merritt" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.7759" lng="-122.2239" type="info">
+          <px-map-popup-data title="BART: Fruitvale" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.7538" lng="-122.1971" type="info">
+          <px-map-popup-data title="BART: Coliseum/Oakland Airport" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.7220" lng="-122.1601" type="info">
+          <px-map-popup-data title="BART: San Leandro" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.6975" lng="-122.1296" type="info">
+          <px-map-popup-data title="BART: Bay Fair" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.6706" lng="-122.0876" type="info">
+          <px-map-popup-data title="BART: Hayward" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.6356" lng="-122.0563" type="warning">
+          <px-map-popup-data title="BART: South Hayward" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.5875" lng="-122.0169" type="important">
+          <px-map-popup-data title="BART: Union City" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.5565" lng="-121.9773" type="info">
+          <px-map-popup-data title="BART: Fremont" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.6920" lng="-122.0755" type="info">
+          <px-map-popup-data title="BART: Castro Valley" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.7016" lng="-121.8909" type="info">
+          <px-map-popup-data title="BART: Dublin/Pleasanton" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+      </px-map-layer-group>
+    </px-map>
+  </section>
+</body>
+</html>

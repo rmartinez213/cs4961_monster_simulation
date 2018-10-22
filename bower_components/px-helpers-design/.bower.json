@@ -1,0 +1,52 @@
+{
+  "name": "px-helpers-design",
+  "version": "1.0.8",
+  "authors": [
+    "General Electric"
+  ],
+  "description": "Common helper styles for Predix UI",
+  "main": "_generic.helpers.scss",
+  "keywords": [
+    "px",
+    "sass",
+    "helpers"
+  ],
+  "homepage": "https://github.com/PredixDev/px-helpers-design.git",
+  "private": false,
+  "ignore": [
+    "*.enc",
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "sass",
+    "*.md",
+    "scripts",
+    "github",
+    "gulpfile.js",
+    "monogram-wdmk.png",
+    "wct.conf.json",
+    "test",
+    "OSS_Notice.pdf",
+    "*.png"
+  ],
+  "dependencies": {
+    "px-colors-design": "^1.0.0"
+  },
+  "devDependencies": {
+    "px-sass-doc": "^2.0.0",
+    "px-starter-kit-design": "^1.0.0",
+    "px-demo": "^3.0.0"
+  },
+  "resolutions": {
+    "webcomponentsjs": "^0.7.24"
+  },
+  "_release": "1.0.8",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.8",
+    "commit": "9a7780976a74d9204313592a4aa724efdde00c7a"
+  },
+  "_source": "https://github.com/predixdesignsystem/px-helpers-design.git",
+  "_target": "^1.0.0",
+  "_originalSource": "px-helpers-design"
+}

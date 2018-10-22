@@ -1,0 +1,461 @@
+<script>
+  (function() {
+    'use strict';
+
+    /* Ensures the behavior namespace is created */
+    window.PxAppBehavior = (window.PxAppBehavior || {});
+
+    /**
+     * Adds component-level behaviors to deal with favoriting and defavoriting
+     * assets in an AssetGraph.
+     *
+     * @polymerBehavior PxAppBehavior.AssetFavoritable
+     */
+    PxAppBehavior.AssetFavoritable = {
+      properties: {
+        /**
+         * A reference to the favorited items. Use this property to set the
+         * favorited items directly. The objects passed to this property must be a
+         * direct reference to one or more of the `items` objects. Changing this property
+         * will automatically update the `favoritedRoute`.
+         *
+         * See `favoritedRoute` for an alternative way to favorite items.
+         */
+        favorited: {
+          type: Object,
+          notify: true,
+          value: function() {
+            return [];
+          }
+        },
+
+        /**
+         * The route to the favorited item as an array of strings. Use this property
+         * to set the favorited item by route, or to bind to updates when the
+         * favorited item is changed. Changing this property will automatically
+         * update the `favorited` item.
+         *
+         * The route array starts at the top of the graph and ends with the favorited
+         * item. Each route entry is a string that corresponds to the unique ID
+         * of an item. The item property that this unique ID will be taken from can be
+         * configured with the `key` property. By default, it will be `item.id`.
+         *
+         *
+         * For example, given the following graph:
+         *
+         *     [
+         *       {
+         *         "label" : "Dashboards",
+         *         "id" : "dash",
+         *         "children" : [
+         *           { "label" : "Truck Statuses", "id" : "trucks" },
+         *           { "label" : "Generator Alerts", "id" : "generators" }
+         *         ]
+         *       },
+         *     ]
+         *
+         * To favorite the "Truck Statuses" page, set the route array to:
+         *
+         *     ["dash", "trucks"]
+         *
+         * If the user then favorites the "Generator Alerts" item, the route array
+         * would be replaced with a new array with the following entries:
+         *
+         *     ["dash", "generators"]
+         *
+         */
+        favoritedRoute: {
+          type: Array,
+          notify: true,
+          value: function() {
+            return [];
+          }
+        },
+
+        /**
+         * [Read-only] Helpful metadata about the favorited item.
+         *
+         * An array of objects with metadata about each favorited item. Each
+         * object will contain the following information about the favorited item
+         * (if no items are favorited, all values will be null):
+         *
+         * - {Object} `item`: Reference to the favorited item
+         * - {Array} `path`: The path to the favorited item as an array. Begins with
+         * the top-most item in the graph and ends with the favorited item. It
+         * the favorited item is at the top of the graph, the array will include
+         * only the favorited item.
+         * - {Array} `route`: Route to the favorited item (see `favoritedRoute`
+         * for more information on how this is created)
+         * - {Object} `parent`: Reference to the favorited item's parent,
+         * or `null` if it has no parent
+         * - {Array} `children`: Reference to the favorited item's children,
+         * or empty array if it has no children
+         * - {Array} `siblings`: Reference to the favorited item's siblings (e.g.
+         * the children of its parent) or an array with only the favorited item
+         * if it has no children.
+         *
+         */
+        favoritedMeta: {
+          type: Object,
+          notify: true,
+          readOnly: true,
+          value: null,
+          computed: '_getFavoritedMeta(favorited.*)'
+        }
+      },
+
+      created() {
+        this._lastFavorite = {
+          source: null,
+          reason: null,
+          item: null
+        };
+      },
+
+      observers: [
+        '_favoritedChanged(favorited.*)',
+        '_favoritedRouteChanged(favoritedRoute.*)'
+      ],
+
+      listeners: {
+        'px-app-asset-graph-created': '__favoriteInitialAssets',
+        'px-app-asset-should-be-favorited' : '_assetFavoritedByEvent',
+        'px-app-asset-should-be-defavorited' : '_assetDefavoritedByEvent'
+      },
+
+      // Favoriting can never not be "multi," but we want to keep this code as
+      // similar as possible to the selectable and activatable behavior code. So
+      // instead of refactoring this code to remove non-multi favoriting, we just
+      // set multiFavorite to true at the start and make it non-configurable.
+      multiFavorite: true,
+
+      /**
+       * Call with an object that is a direct reference to one of the `items`
+       * objects to favorite a single item, or with an array of objects to favorite
+       * multiple items.
+       *
+       * An optional source of the change can be provided as a string.
+       *
+       * @param  {Object|Array} item
+       * @param  {String} source
+       * @return {Object|Array} - The next `favorited` item or items
+       */
+      favorite(item, source='METHOD') {
+        if ((!this.multiFavorite && item === null && this._lastFavorite.item !== null) ||
+            (this.multiFavorite && item === null && this.favorited.length) ||
+            (this.multiFavorite && Array.isArray(item) && !item.length && this.favorited.length)) {
+          this.defavorite(Array.isArray(this.favorited) ? [...this.favorited] : this.favorited);
+          return this.favorited;
+        }
+        if (!item || (!this.multiFavorite && item === this._lastFavorite.item) || (this.multiFavorite && this.favorited.indexOf(item) > -1)) return this.favorited;
+        if (this.multiFavorite && Array.isArray(item) && item.length) {
+          for (let i=0; i<item.length; i++) {
+            this.favorite(item[i], source);
+          }
+          return this.favorited;
+        }
+
+        if (this._assetGraph.hasNode(item)) {
+          this._favoriteAsset(item, source);
+          return this.favorited;
+        } else {
+          throw new Error(`The following item could not be found in the items graph:
+          ${JSON.stringify(item)}`);
+        }
+      },
+
+      /**
+       * Defavorites one or more items. Call with a direct reference to one of
+       * the favorited items to defavorite it, or an array of favorited items to
+       * defavorite multiple, or `null` to defavorite all items.
+       *
+       * @param  {Object|Array|null} item
+       * @param  {String} source
+       * @return {Object|Array|null} - The remaining `favorited` items or null
+       */
+      defavorite(item, source='METHOD') {
+        if (!this.multiFavorite && (!item || this.favorited === item)) {
+          this._defavoriteAsset(this.favorited);
+          return this.favorited;
+        }
+        if (this.multiFavorite && !item) {
+          this.defavorite([...this.favorited]);
+          return this.favorited;
+        }
+        if (this.multiFavorite && Array.isArray(item) && this.favorited.length) {
+          for (let i=0; i<item.length; i++) {
+            this.defavorite(item[i], source);
+          }
+          return this.favorited;
+        }
+        if (this.multiFavorite && item && this.favorited.indexOf(item) > -1) {
+          this._defavoriteAsset(item);
+          return this.favorited;
+        }
+      },
+
+      _getFavoritedMeta(favorited) {
+        if (favorited.base && !Array.isArray(favorited.base) && this._assetGraph && this._assetGraph.hasNode(favorited.base)) {
+          const {path, route, parent, children, siblings} = this._assetGraph.getInfo(favorited.base, this.keys.id);
+          return {
+            item: favorited.base, path, route, parent, children, siblings
+          };
+        }
+        if (favorited.base && Array.isArray(favorited.base) && favorited.base.length) {
+          return favorited.base.map(item => {
+            const {path, route, parent, children, siblings} = this._assetGraph.getInfo(item, this.keys.id);
+            return {
+              item, path, route, parent, children, siblings
+            };
+          });
+        }
+        return {
+          item: null, path: null, route: null, parent: null, children: null, siblings: null
+        };
+      },
+
+      /**
+       * The event `detail.item` should be a reference to an item in the asset graph.
+       */
+      _assetFavoritedByEvent(evt) {
+        evt.stopPropagation();
+        if (evt.detail.item) {
+          this.favorite(evt.detail.item, 'DOM_EVENT');
+        }
+      },
+
+      /**
+       * The event `detail.item` should be a reference to an item in the asset graph.
+       */
+      _assetDefavoritedByEvent(evt) {
+        evt.stopPropagation();
+        if (evt.detail.item) {
+          this.defavorite(evt.detail.item, 'DOM_EVENT');
+        }
+      },
+
+      /**
+       * Should only sync changes to `favoritedRoute` when necessary to avoid
+       * infinite loop of `favorited` observer triggering `favoritedRoute` observer.
+       */
+      _favoritedRouteChanged(ref) {
+        if (!ref || !ref.path || !this._assetGraph || this._squashFavoritedRouteChange) return;
+
+        if (!this.multiFavorite && ref.path === 'favoritedRoute') {
+          this._updateFavoritedFromRoute(ref.base);
+        }
+
+        if (this.multiFavorite && (ref.path === 'favoritedRoute' || ref.path == 'favoritedRoute.splices')) {
+          this._updateFavoritedFromRouteMulti(ref.base);
+        }
+      },
+
+      _updateFavoritedFromRoute(route) {
+        if (this.favorited && (route === null || (Array.isArray(route) && !route.length))) {
+          this._squashFavoritedChange = true;
+          this.defavorite(this.favorited, 'ROUTE_CHANGED');
+          this._squashFavoritedChange = false;
+          return;
+        }
+
+        const item = this._assetGraph.getNodeAtRoute(route);
+        if (item === this.favorited) {
+          return;
+        }
+        else if (item) {
+          this.favorite(item, 'ROUTE_CHANGED');
+        } else {
+          throw new Error(`The route ${JSON.stringify(route)} could not be found in the items graph.`)
+        }
+      },
+
+      _updateFavoritedFromRouteMulti(route) {
+        if (this.favorited.length && (route === null || (Array.isArray(route) && !route.length))) {
+          this._squashFavoritedChange = true;
+          this.defavorite(null, 'ROUTE_CHANGED');
+          this._squashFavoritedChange = false;
+          return;
+        }
+
+        if (Array.isArray(route)) {
+          for (let i=0; i<route.length; i++) {
+            this._squashFavoritedChange = true;
+            this.favorited = route.map(route => {
+              const item = this._assetGraph.getNodeAtRoute(route);
+              if (!item) {
+                throw new Error(`The following item could not be found in the items graph:
+                  ${JSON.stringify(item)}`);
+              }
+
+              return item;
+            });
+            this._squashFavoritedChange = false;
+          }
+        }
+      },
+
+      /**
+       * Should only sync changes to `favoritedRoute` when necessary to avoid
+       * infinite loop of `favorited` observer triggering `favoritedRoute` observer.
+       */
+     _favoritedChanged(ref) {
+        if (!ref || !ref.path || this._squashFavoritedChange || !this._assetGraph) return;
+
+        if (!this.multiFavorite && ref.path === 'favorited' && typeof this.favoritedRoute !== 'undefined') {
+          this._updateFavoritedRoute(ref.base);
+        }
+
+        if (this.multiFavorite && (ref.path === 'favorited' || ref.path === 'favorited.splices') && typeof this.favoritedRoute !== 'undefined') {
+          this._updateFavoritedRouteMulti(ref.base);
+        }
+      },
+
+      _checkIfEmpty(item) {
+        if(Array.isArray(item)) return !!item.length;
+        return !!item;
+      },
+
+      _updateFavoritedRoute(favorited) {
+        if (this._checkIfEmpty(favorited)) {
+          if (!this._assetGraph.hasNode(favorited)) {
+            throw new Error(`The following item could not be found in the items graph:
+              ${JSON.stringify(favorited)}`);
+            return;
+          }
+
+          const route = this._assetGraph.getRoute(favorited, this.keys.id);
+          if (this._routeIsDifferent(route, this.favoritedRoute)) {
+            this._squashFavoritedRouteChange = true;
+            this.favoritedRoute = route;
+            this._squashFavoritedRouteChange = false;
+          }
+        }
+        else {
+          this._squashFavoritedRouteChange = true;
+          this.favoritedRoute = null;
+          this._squashFavoritedRouteChange = false;
+        }
+      },
+
+      _updateFavoritedRouteMulti(favorited) {
+        if (favorited && Array.isArray(favorited) && favorited.length) {
+          this._squashFavoritedRouteChange = true;
+          this.favoritedRoute = favorited.map(item => {
+            if (!this._assetGraph.hasNode(item)) {
+              throw new Error(`The following item could not be found in the items graph:
+                ${JSON.stringify(item)}`);
+            }
+
+            return this._assetGraph.getRoute(item, this.keys.id);
+          });
+          this._squashFavoritedRouteChange = false;
+        } else {
+          this._squashFavoritedRouteChange = true;
+          this.favoritedRoute = [];
+          this._squashFavoritedRouteChange = false;
+        }
+      },
+
+      __favoriteInitialAssets() {
+        if (!this.multiFavorite && this.favorited && !this.favoritedRoute) {
+          this._updateFavoritedRoute(this.favorited);
+        }
+        else if (!this.multiFavorite && !this.favorited && this.favoritedRoute) {
+          this._updateFavoritedFromRoute(this.favoritedRoute);
+        }
+        else if (this.multiFavorite && this.favorited.length && !this.favoritedRoute.length) {
+          this._updateFavoritedRouteMulti(this.favorited);
+        }
+        else if (this.multiFavorite && !this.favorited.length && this.favoritedRoute.length) {
+          this._updateFavoritedFromRouteMulti(this.favorited);
+        }
+      },
+
+      _routeIsDifferent(r1, r2) {
+        if (!r1 || !r2) return true;
+        if (r1.length !== r2.length) return true;
+        for (let i=0; i<r1.length; i++) {
+          if (r1[i] !== r2[i]) return true;
+        }
+        return false;
+      },
+
+      _favoriteAsset(item, source) {
+        const {route, path} = this._assetGraph.getInfo(item, this.keys.id);
+        this._lastFavorite = {
+          item: item,
+          source: source,
+          route: route
+        };
+        if (!this.multiFavorite) {
+          this.favorited = item;
+        }
+        if (this.multiFavorite) {
+          this.push('favorited', item);
+        }
+        this.fire('px-app-asset-favorited', {source, item, route, path});
+      },
+      /**
+       * Fired when a new item is favorited. Includes details about how the item
+       * was favorited, and information about the new favorited item.
+       *
+       * The `source` property is a string describing what triggered
+       * the favoriting:
+       *
+       *   * 'DOM_EVENT' - the user interacted with an item and favorited it
+       *   * 'ROUTE_CHANGED' - the array bound to `favoritedRoute` changed
+       *   * 'ITEM_CHANGED' - the object bound to `favorited` changed
+       *   * 'METHOD' - the `favorite()` method was called
+       *
+       * The event will have the following properties:
+       *
+       *   * {Object} detail - Contains the event details
+       *   * {String} detail.source - Info about the change trigger, see above
+       *   * {Object} detail.item - Reference to the item
+       *   * {Array} detail.route - Route from the top of the graph to the item
+       *   * {Array} detail.path - Path from the top of the graph to the item
+       *
+       * @event px-app-asset-favorited
+       */
+
+      _defavoriteAsset(item, source) {
+        const {route, path} = this._assetGraph.getInfo(item, this.keys.id);
+        this._lastFavorite = {
+          item: null,
+          source: null,
+          route: null
+        };
+        if (!this.multiFavorite) {
+          this.set('favorited', null);
+          this.fire('px-app-asset-defavorited', {source, item, route, path});
+        }
+        if (this.multiFavorite) {
+          this.splice('favorited', this.favorited.indexOf(item), 1);
+          this.fire('px-app-asset-defavorited', {source, item, route, path});
+        }
+      },
+      /**
+       * Fired when a new item is defavorited. Includes details about how the item
+       * was defavorited.
+       *
+       * The `source` property is a string describing what triggered
+       * the defavoriting:
+       *
+       *   * 'DOM_EVENT' - the user interacted with an item and favorited it
+       *   * 'ROUTE_CHANGED' - the array bound to `favoritedRoute` changed
+       *   * 'ITEM_CHANGED' - the object bound to `favorited` changed
+       *   * 'METHOD' - the `defavorite()` method was called
+       *
+       * The event will have the following properties:
+       *
+       *   * {Object} detail - Contains the event details
+       *   * {String} detail.source - Info about the change trigger, see above
+       *   * {Object} detail.item - Reference to the witem
+       *   * {Array} detail.route - Route from the top of the graph to the item
+       *   * {Array} detail.path - Path from the top of the graph to the item
+       *
+       * @event px-app-asset-defavorited
+       */
+    };
+  })();
+</script>

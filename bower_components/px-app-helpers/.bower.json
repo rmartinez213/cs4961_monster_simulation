@@ -1,0 +1,69 @@
+{
+  "name": "px-app-helpers",
+  "version": "2.1.9",
+  "main": [
+    "px-app-helpers.html"
+  ],
+  "ignore": [
+    ".*",
+    "npm-debug.log",
+    "gulpfile.js",
+    "sass",
+    "bower_components",
+    "node_modules",
+    "test",
+    "OSS_Notice.pdf",
+    "scripts",
+    ".github",
+    "px-app-helpers.png",
+    "LICENSE.md",
+    "CONTRIBUTING.md",
+    "HISTORY.md",
+    "README.md",
+    ".jshintrc",
+    ".editorconfig",
+    "*.enc",
+    "polymer.json"
+  ],
+  "dependencies": {
+    "polymer": "#1.9 - 2",
+    "px-theme": "^3.0.0",
+    "px-branding-bar": "^1.0.0",
+    "px-app-nav": "^2.0.0",
+    "app-layout": "^2.0.0"
+  },
+  "devDependencies": {
+    "px-demo": "^3.0.0",
+    "px-card": "^2.0.0",
+    "px-box-sizing-design": "^1.0.0",
+    "px-normalize-design": "^1.0.0",
+    "web-component-tester": "^6.0.0",
+    "app-route": "PolymerElements/app-route#^2.0.3"
+  },
+  "resolutions": {
+    "webcomponentsjs": "^1.0.0"
+  },
+  "variants": {
+    "1.x": {
+      "dependencies": {
+        "polymer": "^1.9.0"
+      },
+      "devDependencies": {
+        "web-component-tester": "^5.0.0"
+      },
+      "resolutions": {
+        "webcomponentsjs": "^0.7.0"
+      }
+    }
+  },
+  "homepage": "https://github.com/predixdesignsystem/px-app-helpers",
+  "_release": "2.1.9",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.1.9",
+    "commit": "cc66c9950156cdf012d216f3af27b50d81a0a03f"
+  },
+  "_source": "https://github.com/predixdesignsystem/px-app-helpers.git",
+  "_target": "^2.0.0",
+  "_originalSource": "px-app-helpers"
+}

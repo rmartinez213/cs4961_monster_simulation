@@ -1,0 +1,2943 @@
+{
+  "schema_version": "1.0.0",
+  "elements": [
+    {
+      "description": "### Usage\n\n    <px-app-header>\n      <px-app-nav slot=\"app-nav\" items=\"...\"></px-app-nav>\n    </px-app-header>\n\nThe default configuration will contain a px-branding-bar that will inherit the `title` attribute from your application.\nTo override the title, use the branding-bar slot instead:\n\n    <px-app-header>\n      <px-branding-bar slot=\"branding-bar\" application-title=\"...\"></px-branding-bar>\n      <px-app-nav slot=\"app-nav\" items=\"...\"></px-app-nav>\n    </px-app-header>",
+      "summary": "",
+      "path": "px-app-header/px-app-header.es6.js",
+      "properties": [
+        {
+          "name": "fixed",
+          "type": "boolean",
+          "description": "By default, the branding bar within the app header container will minimize as the user scrolls away.\nIf this property is set, the branding bar will stay fixed as the user scrolls away.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 8,
+              "column": 6
+            },
+            "end": {
+              "line": 12,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"_fixedChanged\""
+            }
+          },
+          "defaultValue": "false"
+        },
+        {
+          "name": "_condenses",
+          "type": "boolean",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 13,
+              "column": 6
+            },
+            "end": {
+              "line": 16,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "true"
+        },
+        {
+          "name": "_scrollEffect",
+          "type": "string",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 17,
+              "column": 6
+            },
+            "end": {
+              "line": 20,
+              "column": 7
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"px-app-header-scroll-effect\""
+        }
+      ],
+      "methods": [
+        {
+          "name": "ready",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 22,
+              "column": 4
+            },
+            "end": {
+              "line": 26,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
+          "name": "_setHeaderFixedState",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 27,
+              "column": 4
+            },
+            "end": {
+              "line": 30,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
+          "name": "_fixedChanged",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 31,
+              "column": 4
+            },
+            "end": {
+              "line": 35,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": []
+        }
+      ],
+      "staticMethods": [],
+      "demos": [
+        {
+          "url": "index.html",
+          "description": ""
+        }
+      ],
+      "metadata": {},
+      "sourceRange": {
+        "start": {
+          "line": 1,
+          "column": 10
+        },
+        "end": {
+          "line": 36,
+          "column": 3
+        }
+      },
+      "privacy": "public",
+      "superclass": "HTMLElement",
+      "attributes": [
+        {
+          "name": "fixed",
+          "description": "By default, the branding bar within the app header container will minimize as the user scrolls away.\nIf this property is set, the branding bar will stay fixed as the user scrolls away.",
+          "sourceRange": {
+            "start": {
+              "line": 8,
+              "column": 6
+            },
+            "end": {
+              "line": 12,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "type": "boolean"
+        }
+      ],
+      "events": [],
+      "styling": {
+        "cssVariables": [],
+        "selectors": []
+      },
+      "slots": [
+        {
+          "description": "",
+          "name": "branding-bar",
+          "range": {
+            "file": "px-app-header/px-app-header.html",
+            "start": {
+              "line": 43,
+              "column": 10
+            },
+            "end": {
+              "line": 45,
+              "column": 17
+            }
+          }
+        },
+        {
+          "description": "",
+          "name": "app-nav",
+          "range": {
+            "file": "px-app-header/px-app-header.html",
+            "start": {
+              "line": 48,
+              "column": 10
+            },
+            "end": {
+              "line": 48,
+              "column": 38
+            }
+          }
+        },
+        {
+          "description": "",
+          "name": "",
+          "range": {
+            "file": "px-app-header/px-app-header.html",
+            "start": {
+              "line": 51,
+              "column": 6
+            },
+            "end": {
+              "line": 51,
+              "column": 19
+            }
+          }
+        }
+      ],
+      "tagname": "px-app-header"
+    },
+    {
+      "description": "The px-app-route component relies on the Polymer team's [app-location](https://www.webcomponents.org/element/PolymerElements/app-route)\nelement to manage the window location and history state. The element will consume\nthe `route` provided by app-location and send updates to other components\non the page when the URL changes. Interaction with other components on the page\nwill be propagated up to the URL using the same bindings.\n\n### Installing and including in an app\n\nThe px-app-route element is included as part of the [px-app-helpers](https://github.com/PredixDev/px-app-helpers) package.\nTo install the element using bower, use the following command:\n\n    bower install --save px-app-helpers\n\nAfter installing, import the code using HTML imports into the app file that\nimplements px-app-helpers. You'll also need to import app-location from the\nPolymer team's app-route package.\n\n    <link rel=\"import\" href=\"/bower_components/app-route/app-location.html\"/>\n    <link rel=\"import\" href=\"/bower_components/px-app-helpers/px-app-route/px-app-route.html\"/>\n\nThe app-route package will be installed automatically when px-app-helpers\nis included in your bower file.\n\n### Using px-app-route\n\nThe following simplified example shows how px-app-route can be used to send\nupdates to the [px-app-nav](https://www.predix-ui.com/#/components/px-app-nav/)\nelement when the URL changes, and update the URL when the navigation is\ninteracted with:\n\n    <app-location route=\"{{route}}\" use-hash-as-path></app-location>\n    <px-app-route\n        route=\"{{route}}\"\n        use-hash-as-path\n        update-nav-route\n        nav-route=\"{{navRoute}}\">\n    </px-app-route>\n    <px-app-nav\n        items=\"{{navItems}}\"\n        selected-route=\"{{navRoute}}\">\n    </px-app-nav>\n\nIf the following `navItems` are defined:\n\n    [\n      {\n        \"id\" : \"home\",\n        \"label\" : \"Home\"\n      },\n      {\n        \"id\" : \"dashboards\",\n        \"label\" : \"Dashboards\",\n        \"children\" : [\n          {\n            \"id\" : \"a1\",\n            \"label\" : \"Alerts\"\n          }\n        ]\n      }\n    ]\n\nThen tapping on the 'Alerts' navigation button will change the URL to\n\"example.com/#/dashboards/alerts\". Bookmarking that URL and loading\nit again later will automatically select the 'Alerts' navigation item\non page load.\n\n### Complex routing: navigation and assets\n\nMany complex applications require the user the navigate to a view (like the\n'Alerts' dashboard view in the example above) and provide some additional\ninformation about the kind of asset or context they would like to view.\nThe [px-context-browser](https://www.predix-ui.com/#/components/px-context-browser/)\nand [px-breadcrumbs](https://www.predix-ui.com/#/components/px-breadcrumbs/)\nelements both help the user select the specific asset they would like to view.\n\nThe px-app-route element supports binding to the navigation to allow users to\nnavigate to purpose-driven views, and binding to multiple asset browsing elements\nto update whats visible within the view.\n\nThe following example shows all of these elements working together:\n\n    <app-location route=\"{{route}}\" use-hash-as-path></app-location>\n    <px-app-route\n        route=\"{{route}}\"\n        use-hash-as-path\n        update-nav-route\n        nav-route=\"{{navRoute}}\">\n    </px-app-route>\n    <px-app-nav\n        items=\"{{navItems}}\"\n        selected-route=\"{{navRoute}}\">\n    </px-app-nav>\n    <px-context-browser\n        items=\"{{assetItems}}\"\n        selected-route=\"{{assetRoute}}\">\n    </px-context-browser>\n    <px-breadcrumbs\n        items=\"{{assetItems}}\"\n        selected-route=\"{{assetRoute}}\">\n    </px-breadcrumbs>\n\nIf the following `navItems` are defined:\n\n    [\n      {\n        \"id\" : \"home\",\n        \"label\" : \"Home\"\n      },\n      {\n        \"id\" : \"dashboards\",\n        \"label\" : \"Dashboards\",\n        \"children\" : [\n          {\n            \"id\" : \"a1\",\n            \"label\" : \"Alerts\"\n          }\n        ]\n      }\n    ]\n\nAnd the following `assetItems` are defined:\n\n    [\n      {\n        \"id\" : \"us\",\n        \"label\" : \"United States\",\n        \"children\" : [\n          {\n            \"id\" : \"calif\",\n            \"label\" : \"California\",\n            \"children\" : [\n              {\n                \"id\" : \"bay-area\",\n                \"label\" : \"San Francisco Bay Area\"\n              }\n            ]\n          }\n        ]\n      }\n    ]\n\nIf the user selects the \"Alerts\" view and uses the context browser to choose\n\"San Francisco Bay Area\" as a filter for the visible alerts, the URL will\nbe changed to the following: \"example.com/#/dashboards/alerts~/us/calif/bay-area\"\n\n### Changing the way URLs are built\n\nThe URL path produced by px-app-route can be bound to two models: the navigation\nmodel (through `navRoute`) and the asset model (through `assetRoute`). Depending\non the needs of the web app, one or both models can be bound to.\n\nThe selected item in each model can be represented as:\n\n  - a **route**, an array of unique ID strings that start at the root of the model\n  graph and terminate at the selected item (e.g. `[\"us\", \"calif\", \"bay-area\"]`).\n  - a **path**, a stringified representation of the route that can be used to\n  set the URL path (e.g. \"us/calif/bay-area\")\n\nBy default, the route segments are joined together with the '/' character, but\nthat can be changed:\n\n    <app-location route=\"{{route}}\" use-hash-as-path></app-location>\n    <px-app-route\n        route=\"{{route}}\"\n        use-hash-as-path\n        update-nav-route\n        nav-route=\"{{navRoute}}\"\n        segment-paths-with=\".\">\n    </px-app-route>\n\nIn the above example, the navigation model route `[\"us\", \"calif\", \"bay-area\"]`\nwould be transformed into the path string \"us.calif.bay-area\".\n\nChoose a safe, unreserved URI character to ensure there are no issues setting\nURL path or loading it later. See [RFC 3986](http://www.ietf.org/rfc/rfc3986.txt)\nfor a list of unsafe and reserved characters. In general, use one of: `-`, `.`,\n`_`, or `~`. The chosen character should not appear in any of the unique ID\nstrings in the model route.\n\nWhen two models are used, the models must be joined together with a character\nto divide the two paths. By default, the models are joined with the '~'\ncharacter. Set the `segment-models-with` attribute on the px-app-route element\nto a safe, unreserved URI character to change this.\n\n### Routing with hash\n\nWhen the backend application server is not setup to manage routes and send frontend\nroutes to a single-page web app index file the hash portion of the URL can be\nused to do routing. To enable hash-based URLs, enable the `use-hash-as-path`\nattribute on both the px-app-route element and the app-location element that\nproduces the route.\n\n### Integrating px-app-route with other routers\n\nThe `encodeAllPaths`, `encodePath`, and `decodePath` methods available on all\npx-app-route instances can also be called directly without stamping a\npx-app-route element in your app.\n\nThose methods are available at `window.PxApp.RouteHelpers.[METHOD_NAME]`.\nCalling these methods directly on the window is a useful way to encode and\ndecode model routes on your page and send the result to a third-party router\n(e.g. any Angular or React router).\n\nSee the API documentation for this component for more information on how\nto use the static methods to encode and decode model routes/paths.",
+      "summary": "",
+      "path": "px-app-route/px-app-route.html",
+      "properties": [
+        {
+          "name": "segmentPathsWith",
+          "type": "string",
+          "description": "Valid URI-safe character used to seperate URL path segments. Defaults\nto '/' (e.g. the path ['about','company-info'] would be joined as\n'about/company-info').\n\nChoose a safe, unreserved URI character to ensure there are no issues.\nSee [RFC 3986](http://www.ietf.org/rfc/rfc3986.txt) for a list of\nunsafe and reserved characters. In general, use one of: `-`, `.`,\n`_`, or `~`. Note that character should not occur in any paths.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 229,
+              "column": 8
+            },
+            "end": {
+              "line": 232,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"/\""
+        },
+        {
+          "name": "segmentModelsWith",
+          "type": "string",
+          "description": "Valid URI-safe character used to seperate different models in the\nURL. Defaults to '~' (e.g. the nav path ['about','company-info'] and\nasset path ['dashboards','trucks'] would be joined as\n'about/company-info~dashboards/trucks'.\n\nChoose a safe, unreserved URI character to ensure there are no issues.\nSee [RFC 3986](http://www.ietf.org/rfc/rfc3986.txt) for a list of\nunsafe and reserved characters. In general, use one of: `-`, `.`,\n`_`, or `~`. Note that character should not occur in any paths.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 245,
+              "column": 8
+            },
+            "end": {
+              "line": 248,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "\"~\""
+        },
+        {
+          "name": "route",
+          "type": "Object",
+          "description": "Bind this property to the `route` exposes by the <app-location> element.\nUpdates to the URL path will be propagated to `route.path` and decoded\nby this component to update the app-nav and app-asset models. Updates\nto the models will be pushed to the URL path.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 256,
+              "column": 8
+            },
+            "end": {
+              "line": 260,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true,
+              "observer": "\"_handleRouteChanged\""
+            }
+          }
+        },
+        {
+          "name": "useHashAsPath",
+          "type": "boolean",
+          "description": "Set to `true` if the URL path will be prefixed with a `#` character.\nThis should also be enabled on the <app-location> element that shares\nits route with this component.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 267,
+              "column": 8
+            },
+            "end": {
+              "line": 270,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false"
+        },
+        {
+          "name": "updateNavRoute",
+          "type": "boolean",
+          "description": "Set to `true` to sync a <px-app-nav> component's state with the URL\nbar. See the `navRoute` property for help on binding changes.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 276,
+              "column": 8
+            },
+            "end": {
+              "line": 279,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false"
+        },
+        {
+          "name": "navRoute",
+          "type": "Array",
+          "description": "Bind this property to a <px-app-nav> component's `selectedRoute`\nproperty to keep the navigation state in sync with the URL path.\nMust enable `updateNavRoute` for this to work.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 286,
+              "column": 8
+            },
+            "end": {
+              "line": 289,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          }
+        },
+        {
+          "name": "navPathString",
+          "type": "string",
+          "description": "Read-only string that is computed from the `navRoute`. Will be\npushed into the URL path.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 295,
+              "column": 8
+            },
+            "end": {
+              "line": 300,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "readOnly": true
+            }
+          },
+          "defaultValue": "\"\""
+        },
+        {
+          "name": "updateAssetRoute",
+          "type": "boolean",
+          "description": "Set to `true` to sync the state of components that use the Asset Graph\nBehavior with the URL path. See the `assetRoute` property for help\non binding changes.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 307,
+              "column": 8
+            },
+            "end": {
+              "line": 310,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          },
+          "defaultValue": "false"
+        },
+        {
+          "name": "assetRoute",
+          "type": "Array",
+          "description": "Bind this property to a the `selectedRoute` property of one or more\ncomponents that use the Asset Graph Behavior to keep the selected\nasset state in sync with the URL path. Must enable `updateAssetRoute` for\nthis to work.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 318,
+              "column": 8
+            },
+            "end": {
+              "line": 321,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "notify": true
+            }
+          }
+        },
+        {
+          "name": "assetPathString",
+          "type": "string",
+          "description": "Read-only string that is computed from the `assetRoute`. Will be\npushed into the URL path.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 327,
+              "column": 8
+            },
+            "end": {
+              "line": 332,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "readOnly": true
+            }
+          },
+          "defaultValue": "\"\""
+        },
+        {
+          "name": "path",
+          "type": "string",
+          "description": "Read-only string that is computed from the `navRoute` and\n`assetRoute` models (if they are enabled). Will be used to set the\nURL path.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 339,
+              "column": 8
+            },
+            "end": {
+              "line": 344,
+              "column": 9
+            }
+          },
+          "metadata": {
+            "polymer": {
+              "observer": "\"_handlePathChanged\"",
+              "readOnly": true
+            }
+          }
+        },
+        {
+          "name": "_isReady",
+          "type": "boolean",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 346,
+              "column": 8
+            },
+            "end": {
+              "line": 346,
+              "column": 25
+            }
+          },
+          "metadata": {
+            "polymer": {}
+          }
+        }
+      ],
+      "methods": [
+        {
+          "name": "ready",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 353,
+              "column": 6
+            },
+            "end": {
+              "line": 355,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": []
+        },
+        {
+          "name": "_computeAppNavPathString",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 357,
+              "column": 6
+            },
+            "end": {
+              "line": 367,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "updateNavRoute"
+            },
+            {
+              "name": "navRoute"
+            },
+            {
+              "name": "segmentPathsWith"
+            }
+          ]
+        },
+        {
+          "name": "_computeAppAssetPathString",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 369,
+              "column": 6
+            },
+            "end": {
+              "line": 379,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "updateAssetRoute"
+            },
+            {
+              "name": "assetRoute"
+            },
+            {
+              "name": "segmentPathsWith"
+            }
+          ]
+        },
+        {
+          "name": "_computePath",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 381,
+              "column": 6
+            },
+            "end": {
+              "line": 396,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "updateNavRoute"
+            },
+            {
+              "name": "navPath"
+            },
+            {
+              "name": "updateAssetRoute"
+            },
+            {
+              "name": "assetPath"
+            },
+            {
+              "name": "pathSegment"
+            },
+            {
+              "name": "modelSegment"
+            },
+            {
+              "name": "useHash"
+            }
+          ]
+        },
+        {
+          "name": "_handlePathChanged",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 398,
+              "column": 6
+            },
+            "end": {
+              "line": 402,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "newPath"
+            },
+            {
+              "name": "oldPath"
+            }
+          ]
+        },
+        {
+          "name": "_handleRouteChanged",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 404,
+              "column": 6
+            },
+            "end": {
+              "line": 411,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "newRoute"
+            },
+            {
+              "name": "oldRoute"
+            }
+          ]
+        },
+        {
+          "name": "_windowPathChanged",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 413,
+              "column": 6
+            },
+            "end": {
+              "line": 431,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "newPath"
+            }
+          ]
+        },
+        {
+          "name": "encodeAllPaths",
+          "description": "Encodes multiple route models into a path string that can be passed to\na JavaScript router (or to `window.location`). Pass an object with\n`navRoute` and `assetRoute` route arrays and an optional configuration\nobject.\n\nTo generate a path for nav and asset items, call with the following\narguments:\n\n```\n  encodeAllPaths(\n    {\n      navRoute: ['dashboards', 'truck-locations'],\n      assetRoute: ['us', 'calif', 'bay-area']\n    },\n    {\n      segmentPathsWith: '/',\n      segmentModelsWith: '~',\n      prefixFirstPath: true\n    }\n  );\n```\n\nThe following string will be returned:\n\n```\n  '/dashboards/truck-locations~/us/calif/bay-area'\n```\n\n## Passing routes\n\nThe `routes` argument should be an object with one or both of the\nfollowing keys:\n\n  - `navRoute`: An array of strings\n  - `assetRoute`: An array of strings\n\n## Configuring the encoder\n\nThe following `options` can be passed to change the output:\n\n  - `segmentPathsWith`: Any URI-safe character (one of `-`, `.`, `_`, or `~`)\n  - `segmentModelsWith`: Any URI-safe character (one of `-`, `.`, `_`, or `~`)\n  - `prefixFirstPath`: Adds the path segment character to the front of the returned path",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 482,
+              "column": 6
+            },
+            "end": {
+              "line": 484,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "routes",
+              "type": "Object"
+            },
+            {
+              "name": "options",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "type": "String"
+          }
+        },
+        {
+          "name": "encodePath",
+          "description": "Encodes a route (an array of string) into a path string that can be passed\nto a JavaScript router (or to `window.location`). Pass an array of\nstrings and a URI-safe character to segment the strings with (e.g. '/').\nOptionally set the `prefixFirstPath` argument to true to add the segment\ncharacter to the front of the path.\n\nFor example, given the following settings:\n\n```\n  encodePath(['dashboards', 'truck-locations'], '/', true);\n```\n\nThe following string will be returned:\n\n```\n  '/dashboards/truck-locations'\n```",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 511,
+              "column": 6
+            },
+            "end": {
+              "line": 513,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "route",
+              "type": "Array",
+              "description": "an array of string"
+            },
+            {
+              "name": "segmentWith",
+              "type": "Object",
+              "description": "a URI-safe character that will be placed between each path segment"
+            },
+            {
+              "name": "prefixFirstPath",
+              "type": "Boolean",
+              "description": "adds the segment character to the front of the returned path"
+            }
+          ],
+          "return": {
+            "type": "String"
+          }
+        },
+        {
+          "name": "decodePath",
+          "description": "Decodes a URI path into arrays of route strings that can be passed to\nother components to synchronise state.\n\n## Decode navigation path only\n\nTo decode a path string that only contains nav items, call the method\nwith the path to decode and the following options:\n\n```\n  decodePath('/dashboards/truck-locations', {\n    navRoute: true\n  });\n```\n\nThe following object will be returned:\n\n```\n  {\n    navRoute: ['dashboards', 'truck-locations']\n  }\n```\n\n## Decode navigation and asset paths\n\nTo decode a path string that contains nav items and asset items,\ncall the method with the path to decode and the following options:\n\n```\n  decodePath('/dashboards/truck-locations~/us/calif/bay-area', {\n    navRoute: true,\n    assetRoute: true\n  });\n```\n\nThe following object will be returned:\n\n```\n  {\n    navRoute: ['dashboards', 'truck-locations'],\n    assetRoute: ['us', 'calif', 'bay-area']\n  }\n```\n\n## Configuring segment seperators\n\nThe characters used to seperate segments of each path, and the character\nused to join multiple model paths, can be set through the options\nobject to any URI-safe character (one of `-`, `.`, `_`, or `~`).\n\nTo decode this custom path, use the following options:\n\n```\n  decodePath('alerts.inbox_factories.factory1.area38', {\n    navRoute: true,\n    assetRoute: true,\n    segmentPathsWith: '.',\n    segmentModelsWith: '_'\n  });\n```\n\nThe following object will be returned:\n\n```\n  {\n    navRoute: ['alerts', 'inbox'],\n    assetRoute: ['factories', 'factory1', 'area38']\n  }\n```\n\n## All configurations\n\nThe following `options` can be passed to change the output:\n\n  - `navRoute`: A boolean, if `true` the nav route will be decoded\n  - `assetRoute`: A boolean, if `true` the asset route will be decoded\n  - `segmentPathsWith`: Any URI-safe character (one of `-`, `.`, `_`, or `~`)\n  - `segmentModelsWith`: Any URI-safe character (one of `-`, `.`, `_`, or `~`)\n  - `stripPrefix`: Strips the `segmentPathsWith` character from the front of the path, if it is found there",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 599,
+              "column": 6
+            },
+            "end": {
+              "line": 601,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "path",
+              "type": "String"
+            },
+            {
+              "name": "options",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "type": "Object"
+          }
+        },
+        {
+          "name": "isDeepEqual",
+          "description": "Determines if two arrays of strings are deeply equal - returns `true`\nif both arrays have the same strings in the same order. Helps perform\nchecks on the equality of arrays of route strings.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 612,
+              "column": 6
+            },
+            "end": {
+              "line": 614,
+              "column": 7
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "a1",
+              "type": "Array"
+            },
+            {
+              "name": "a2",
+              "type": "Array"
+            }
+          ],
+          "return": {
+            "type": "Boolean"
+          }
+        }
+      ],
+      "staticMethods": [],
+      "demos": [],
+      "metadata": {},
+      "sourceRange": {
+        "start": {
+          "line": 215,
+          "column": 12
+        },
+        "end": {
+          "line": 615,
+          "column": 5
+        }
+      },
+      "privacy": "public",
+      "superclass": "HTMLElement",
+      "attributes": [
+        {
+          "name": "segment-paths-with",
+          "description": "Valid URI-safe character used to seperate URL path segments. Defaults\nto '/' (e.g. the path ['about','company-info'] would be joined as\n'about/company-info').\n\nChoose a safe, unreserved URI character to ensure there are no issues.\nSee [RFC 3986](http://www.ietf.org/rfc/rfc3986.txt) for a list of\nunsafe and reserved characters. In general, use one of: `-`, `.`,\n`_`, or `~`. Note that character should not occur in any paths.",
+          "sourceRange": {
+            "start": {
+              "line": 229,
+              "column": 8
+            },
+            "end": {
+              "line": 232,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        },
+        {
+          "name": "segment-models-with",
+          "description": "Valid URI-safe character used to seperate different models in the\nURL. Defaults to '~' (e.g. the nav path ['about','company-info'] and\nasset path ['dashboards','trucks'] would be joined as\n'about/company-info~dashboards/trucks'.\n\nChoose a safe, unreserved URI character to ensure there are no issues.\nSee [RFC 3986](http://www.ietf.org/rfc/rfc3986.txt) for a list of\nunsafe and reserved characters. In general, use one of: `-`, `.`,\n`_`, or `~`. Note that character should not occur in any paths.",
+          "sourceRange": {
+            "start": {
+              "line": 245,
+              "column": 8
+            },
+            "end": {
+              "line": 248,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        },
+        {
+          "name": "route",
+          "description": "Bind this property to the `route` exposes by the <app-location> element.\nUpdates to the URL path will be propagated to `route.path` and decoded\nby this component to update the app-nav and app-asset models. Updates\nto the models will be pushed to the URL path.",
+          "sourceRange": {
+            "start": {
+              "line": 256,
+              "column": 8
+            },
+            "end": {
+              "line": 260,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "Object"
+        },
+        {
+          "name": "use-hash-as-path",
+          "description": "Set to `true` if the URL path will be prefixed with a `#` character.\nThis should also be enabled on the <app-location> element that shares\nits route with this component.",
+          "sourceRange": {
+            "start": {
+              "line": 267,
+              "column": 8
+            },
+            "end": {
+              "line": 270,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "boolean"
+        },
+        {
+          "name": "update-nav-route",
+          "description": "Set to `true` to sync a <px-app-nav> component's state with the URL\nbar. See the `navRoute` property for help on binding changes.",
+          "sourceRange": {
+            "start": {
+              "line": 276,
+              "column": 8
+            },
+            "end": {
+              "line": 279,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "boolean"
+        },
+        {
+          "name": "nav-route",
+          "description": "Bind this property to a <px-app-nav> component's `selectedRoute`\nproperty to keep the navigation state in sync with the URL path.\nMust enable `updateNavRoute` for this to work.",
+          "sourceRange": {
+            "start": {
+              "line": 286,
+              "column": 8
+            },
+            "end": {
+              "line": 289,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "Array"
+        },
+        {
+          "name": "nav-path-string",
+          "description": "Read-only string that is computed from the `navRoute`. Will be\npushed into the URL path.",
+          "sourceRange": {
+            "start": {
+              "line": 295,
+              "column": 8
+            },
+            "end": {
+              "line": 300,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        },
+        {
+          "name": "update-asset-route",
+          "description": "Set to `true` to sync the state of components that use the Asset Graph\nBehavior with the URL path. See the `assetRoute` property for help\non binding changes.",
+          "sourceRange": {
+            "start": {
+              "line": 307,
+              "column": 8
+            },
+            "end": {
+              "line": 310,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "boolean"
+        },
+        {
+          "name": "asset-route",
+          "description": "Bind this property to a the `selectedRoute` property of one or more\ncomponents that use the Asset Graph Behavior to keep the selected\nasset state in sync with the URL path. Must enable `updateAssetRoute` for\nthis to work.",
+          "sourceRange": {
+            "start": {
+              "line": 318,
+              "column": 8
+            },
+            "end": {
+              "line": 321,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "Array"
+        },
+        {
+          "name": "asset-path-string",
+          "description": "Read-only string that is computed from the `assetRoute`. Will be\npushed into the URL path.",
+          "sourceRange": {
+            "start": {
+              "line": 327,
+              "column": 8
+            },
+            "end": {
+              "line": 332,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        },
+        {
+          "name": "path",
+          "description": "Read-only string that is computed from the `navRoute` and\n`assetRoute` models (if they are enabled). Will be used to set the\nURL path.",
+          "sourceRange": {
+            "start": {
+              "line": 339,
+              "column": 8
+            },
+            "end": {
+              "line": 344,
+              "column": 9
+            }
+          },
+          "metadata": {},
+          "type": "string"
+        }
+      ],
+      "events": [
+        {
+          "type": "CustomEvent",
+          "name": "route-changed",
+          "description": "Fired when the `route` property changes.",
+          "metadata": {}
+        },
+        {
+          "type": "CustomEvent",
+          "name": "nav-route-changed",
+          "description": "Fired when the `navRoute` property changes.",
+          "metadata": {}
+        },
+        {
+          "type": "CustomEvent",
+          "name": "asset-route-changed",
+          "description": "Fired when the `assetRoute` property changes.",
+          "metadata": {}
+        }
+      ],
+      "styling": {
+        "cssVariables": [],
+        "selectors": []
+      },
+      "slots": [],
+      "tagname": "px-app-route"
+    }
+  ],
+  "metadata": {
+    "polymer": {
+      "behaviors": [
+        {
+          "description": "Adds component-level behaviors to deal with activating and deactivating\nassets in an AssetGraph.\n\nSingle-activate mode is enabled by default. To enable multi-activate mode\npermanently, add the following static property to your component:\n\n```\nPolymer({\n  is: 'x-component-name',\n  behaviors: [PxAppBehavior.AssetActivatable],\n  multiActivate: true,\n  properties: {},\n  ...\n});\n```\n\nTo allow the developer using your component to enable or disable multi-activate\nmode dynamically via an attribute, add the following property to your component\n(ensure the property is named `multiActivate`, is a Boolean, and has the observer\n`_toggleMultiActivate`):\n\n```\nPolymer({\n  is: 'x-component-name',\n  behaviors: [PxAppBehavior.AssetActivatable],\n  properties: {\n    multiActivate: {\n      type: Boolean,\n      value: false,\n      observer: '_toggleMultiActivate'\n    }\n  },\n  ...\n});\n```",
+          "summary": "",
+          "path": "px-app-asset/px-app-asset-behavior-activatable.html",
+          "properties": [
+            {
+              "name": "active",
+              "type": "Object",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 51,
+                  "column": 8
+                },
+                "end": {
+                  "line": 57,
+                  "column": 9
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "notify": true
+                }
+              }
+            },
+            {
+              "name": "activeRoute",
+              "type": "Array",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 62,
+                  "column": 8
+                },
+                "end": {
+                  "line": 68,
+                  "column": 9
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "notify": true
+                }
+              }
+            },
+            {
+              "name": "activeMeta",
+              "type": "Object",
+              "description": "[Read-only] Helpful metadata about the active item.\n\nSINGLE-ACTIVE MODE: An object with the following information about\nthe active item (if no active item, all values will be null):\n\n- {Object} `item`: Reference to the active item\n- {Array} `path`: The path to the active item as an array. Begins with\nthe top-most item in the graph and ends with the active item. If\nthe active item is at the top of the graph, the array will include\nonly the active item.\n- {Array} `route`: Route to the active item (see `activeRoute`\nfor more information on how this is created)\n- {Object} `parent`: Reference to the active item's parent,\nor `null` if it has no parent\n- {Array} `children`: Reference to the active item's children,\nor empty array if it has no children\n- {Array} `siblings`: Reference to the active item's siblings (e.g.\nthe children of its parent) or an array with only the active item\nif it has no children.\n\nMULTI-ACTIVE MODE: An array of objects with metadata about each\nactive item. Each object will contain the same values as above.\nIf no items are active, all values will be null.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 95,
+                  "column": 8
+                },
+                "end": {
+                  "line": 101,
+                  "column": 9
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "notify": true,
+                  "readOnly": true
+                }
+              },
+              "defaultValue": "null"
+            },
+            {
+              "name": "_multiActivate",
+              "type": "boolean",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 122,
+                  "column": 6
+                },
+                "end": {
+                  "line": 122,
+                  "column": 27
+                }
+              },
+              "metadata": {
+                "polymer": {}
+              }
+            }
+          ],
+          "methods": [
+            {
+              "name": "created",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 104,
+                  "column": 6
+                },
+                "end": {
+                  "line": 110,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "multiActivate",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 128,
+                  "column": 6
+                },
+                "end": {
+                  "line": 133,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "val"
+                }
+              ]
+            },
+            {
+              "name": "_toggleMultiActivate",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 135,
+                  "column": 6
+                },
+                "end": {
+                  "line": 143,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "allowMultiActivate"
+                }
+              ]
+            },
+            {
+              "name": "activate",
+              "description": "Activates an item. Call with an object that is a direct reference to one\nof the `items` objects.\n\nIf multi-activate mode is enabled, call with an object to activate a single\nitem or an array of objects to activate multiple items.\n\nAn optional source of the change can be provided as a string.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 158,
+                  "column": 6
+                },
+                "end": {
+                  "line": 180,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "item",
+                  "type": "(Object|Array)"
+                },
+                {
+                  "name": "source",
+                  "type": "String",
+                  "defaultValue": "'METHOD'"
+                }
+              ],
+              "return": {
+                "type": "(Object|Array)",
+                "desc": "The next `active` item or items"
+              }
+            },
+            {
+              "name": "deactivate",
+              "description": "Deactivates an item. Call with a direct reference to the active item\nor with `null` to deactivate whatever is active.\n\nIf multi-activate mode is enabled, call with a direct reference to one of\nthe active items to deactivate it, or an array of active items to\ndeactivate multiple, or `null` to deactivate all items.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 194,
+                  "column": 6
+                },
+                "end": {
+                  "line": 213,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "item",
+                  "type": "(Object|Array|null)"
+                },
+                {
+                  "name": "source",
+                  "type": "String",
+                  "defaultValue": "'METHOD'"
+                }
+              ],
+              "return": {
+                "type": "(Object|Array|null)",
+                "desc": "The remaining `active` items or null"
+              }
+            },
+            {
+              "name": "_getActiveMeta",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 215,
+                  "column": 6
+                },
+                "end": {
+                  "line": 233,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "active"
+                }
+              ]
+            },
+            {
+              "name": "_assetActivatedByEvent",
+              "description": "The event `detail.item` should be a reference to an item in the asset graph.",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 238,
+                  "column": 6
+                },
+                "end": {
+                  "line": 243,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "evt"
+                }
+              ]
+            },
+            {
+              "name": "_assetDeactivatedByEvent",
+              "description": "The event `detail.item` should be a reference to an item in the asset graph.",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 248,
+                  "column": 6
+                },
+                "end": {
+                  "line": 253,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "evt"
+                }
+              ]
+            },
+            {
+              "name": "_activeRouteChanged",
+              "description": "Should only sync changes to `activeRoute` when necessary to avoid\ninfinite loop of `active` observer triggering `activeRoute` observer.",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 259,
+                  "column": 6
+                },
+                "end": {
+                  "line": 305,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "ref"
+                }
+              ]
+            },
+            {
+              "name": "_activeChanged",
+              "description": "Should only sync changes to `activeRoute` when necessary to avoid\ninfinite loop of `active` observer triggering `activeRoute` observer.",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 311,
+                  "column": 5
+                },
+                "end": {
+                  "line": 321,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "ref"
+                }
+              ]
+            },
+            {
+              "name": "_updateActiveRoute",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 323,
+                  "column": 6
+                },
+                "end": {
+                  "line": 343,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "active"
+                }
+              ]
+            },
+            {
+              "name": "_updateActiveRouteMulti",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 345,
+                  "column": 6
+                },
+                "end": {
+                  "line": 362,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "active"
+                }
+              ]
+            },
+            {
+              "name": "_activateAsset",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 364,
+                  "column": 6
+                },
+                "end": {
+                  "line": 378,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "item"
+                },
+                {
+                  "name": "source"
+                }
+              ]
+            },
+            {
+              "name": "_deactivateAsset",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 401,
+                  "column": 6
+                },
+                "end": {
+                  "line": 416,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "item"
+                },
+                {
+                  "name": "source"
+                }
+              ]
+            }
+          ],
+          "staticMethods": [],
+          "demos": [],
+          "metadata": {},
+          "sourceRange": {
+            "start": {
+              "line": 46,
+              "column": 4
+            },
+            "end": {
+              "line": 438,
+              "column": 6
+            }
+          },
+          "privacy": "public",
+          "name": "PxAppBehavior.AssetActivatable",
+          "attributes": [
+            {
+              "name": "active",
+              "description": "",
+              "sourceRange": {
+                "start": {
+                  "line": 51,
+                  "column": 8
+                },
+                "end": {
+                  "line": 57,
+                  "column": 9
+                }
+              },
+              "metadata": {},
+              "type": "Object"
+            },
+            {
+              "name": "active-route",
+              "description": "",
+              "sourceRange": {
+                "start": {
+                  "line": 62,
+                  "column": 8
+                },
+                "end": {
+                  "line": 68,
+                  "column": 9
+                }
+              },
+              "metadata": {},
+              "type": "Array"
+            },
+            {
+              "name": "active-meta",
+              "description": "[Read-only] Helpful metadata about the active item.\n\nSINGLE-ACTIVE MODE: An object with the following information about\nthe active item (if no active item, all values will be null):\n\n- {Object} `item`: Reference to the active item\n- {Array} `path`: The path to the active item as an array. Begins with\nthe top-most item in the graph and ends with the active item. If\nthe active item is at the top of the graph, the array will include\nonly the active item.\n- {Array} `route`: Route to the active item (see `activeRoute`\nfor more information on how this is created)\n- {Object} `parent`: Reference to the active item's parent,\nor `null` if it has no parent\n- {Array} `children`: Reference to the active item's children,\nor empty array if it has no children\n- {Array} `siblings`: Reference to the active item's siblings (e.g.\nthe children of its parent) or an array with only the active item\nif it has no children.\n\nMULTI-ACTIVE MODE: An array of objects with metadata about each\nactive item. Each object will contain the same values as above.\nIf no items are active, all values will be null.",
+              "sourceRange": {
+                "start": {
+                  "line": 95,
+                  "column": 8
+                },
+                "end": {
+                  "line": 101,
+                  "column": 9
+                }
+              },
+              "metadata": {},
+              "type": "Object"
+            }
+          ],
+          "events": [
+            {
+              "type": "CustomEvent",
+              "name": "px-app-asset-activated",
+              "description": "px-app-asset-activated",
+              "metadata": {}
+            },
+            {
+              "type": "CustomEvent",
+              "name": "active-changed",
+              "description": "Fired when the `active` property changes.",
+              "metadata": {}
+            },
+            {
+              "type": "CustomEvent",
+              "name": "active-route-changed",
+              "description": "Fired when the `activeRoute` property changes.",
+              "metadata": {}
+            },
+            {
+              "type": "CustomEvent",
+              "name": "active-meta-changed",
+              "description": "Fired when the `activeMeta` property changes.",
+              "metadata": {}
+            }
+          ],
+          "styling": {
+            "cssVariables": [],
+            "selectors": []
+          },
+          "slots": []
+        },
+        {
+          "description": "",
+          "summary": "",
+          "path": "px-app-asset/px-app-asset-behavior-graph.es6.js",
+          "properties": [
+            {
+              "name": "items",
+              "type": "Array",
+              "description": "An array of objects that will be used to build the nav. Top-level items\ncan optionally have one level of children beneath them, turning the\ntop-level item into a dropdown group.\n\nSelecting an item automatically selects its parent if it has one.\nFor the navigation, top-level items with children cannot be selected\ndirectly - instead, users can select a child item and its parent will\nalso be marked as selected (and set as the `selectedItemParent`).\n\nAll items should have at least the following properties:\n\n- {String} id - A unique string that identifies the item. Should only\ncontain valid ASCII characters. It's recommended to only use URI-safe\ncharacters to allow for easy binding to the URL. Examples: 'home' or 'alerts'\n- {String} label - A short, human-readable text label for the item.\n\nThe following optional properties can be used:\n\n- {Array} children - An array of subitem objects that are children of\nthe item. Each child item should also have an `id` and `label`, and\nmay have its own child items.\n- {Boolean=false} isTerminal - If `true` the item cannot have any children.\nTerminal items can only be selected, not activated (navigated into).\nItems with children should not be marked as terminal.\n- {Boolean=false} isExhausted - If `true` the item does not have any\nadditional children available to load from a remote data source.\n- {Boolean=true} isSelectable - If `false` the item can only be activated\n(navigated into) to view its children, not selected.\n\nThe following is an example of a list of valid nav items:\n\n    [\n      { \"label\" : \"Home\",   \"id\" : \"home\" },\n      { \"label\" : \"Alerts\", \"id\" : \"alerts\" },\n      { \"label\" : \"Assets\", \"id\" : \"assets\", \"children\": [\n        { \"label\" : \"Asset #1\", \"id\" : \"a1\" },\n        { \"label\" : \"Asset #2\", \"id\" : \"a2\" }\n      ] }\n    ]\n\nThe item property names can be changed, e.g. to choose a different item\nproperty to serve as a unique ID. See the `keys` property for details.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 58,
+                  "column": 6
+                },
+                "end": {
+                  "line": 60,
+                  "column": 7
+                }
+              },
+              "metadata": {
+                "polymer": {}
+              }
+            },
+            {
+              "name": "keys",
+              "type": "Object",
+              "description": "Changes the item properties (keys) that will be used internally to find\neach item's unique ID, label, and child list.\n\nUse this property if you already have a predefined data schema for your\napplication and want to customize this component to match your schema.\nOtherwise, it's recommended to leave the defaults.\n\nThe following properties can be set:\n\n- id: [default='id'] a unique ID for the item\n- label: [default='label'] a human-readable label\n- children: [default='children'] an array of child items\n\nIf you want to configure any keys, you must set all the keys. If any\nof the keys are not defined, the navigation will fail.\n\nFor example, the schema could be changed to the following:\n\n    {\n      \"id\" : \"assetId\",\n      \"label\" : \"assetName\",\n      \"children\" : \"subAssets\"\n    }",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 88,
+                  "column": 6
+                },
+                "end": {
+                  "line": 98,
+                  "column": 7
+                }
+              },
+              "metadata": {
+                "polymer": {}
+              },
+              "defaultValue": "{\"id\":\"id\",\"label\":\"label\",\"children\":\"children\",\"icon\":\"icon\"}"
+            },
+            {
+              "name": "_assetGraph",
+              "type": "Object",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 100,
+                  "column": 6
+                },
+                "end": {
+                  "line": 103,
+                  "column": 7
+                }
+              },
+              "metadata": {
+                "polymer": {}
+              },
+              "defaultValue": "null"
+            },
+            {
+              "name": "__rootItems",
+              "type": "Array",
+              "description": "",
+              "privacy": "private",
+              "sourceRange": {
+                "start": {
+                  "line": 104,
+                  "column": 6
+                },
+                "end": {
+                  "line": 106,
+                  "column": 7
+                }
+              },
+              "metadata": {
+                "polymer": {}
+              }
+            }
+          ],
+          "methods": [
+            {
+              "name": "created",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 111,
+                  "column": 4
+                },
+                "end": {
+                  "line": 113,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "__handleAssetReferenceChanged",
+              "description": "",
+              "privacy": "private",
+              "sourceRange": {
+                "start": {
+                  "line": 115,
+                  "column": 4
+                },
+                "end": {
+                  "line": 137,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "items"
+                },
+                {
+                  "name": "keys"
+                }
+              ]
+            },
+            {
+              "name": "__handleKeyUpdated",
+              "description": "",
+              "privacy": "private",
+              "sourceRange": {
+                "start": {
+                  "line": 139,
+                  "column": 4
+                },
+                "end": {
+                  "line": 156,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "record"
+                }
+              ]
+            },
+            {
+              "name": "addChildren",
+              "description": "Adds a child or children to the requested node. Pass a single object\nto add one child, or an array of objects to add multiple children.\n\nThe `node` should be a direct reference to one of the objects already\nin the asset graph (e.g. one of the `items` objects or another node\nadded through the `addChildren` API). To remove children from the root\nof the graph, call with `node` as null.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 170,
+                  "column": 4
+                },
+                "end": {
+                  "line": 182,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "node",
+                  "type": "(Object|null)"
+                },
+                {
+                  "name": "children",
+                  "type": "(Object|Array.<Object>)"
+                },
+                {
+                  "name": "options"
+                }
+              ]
+            },
+            {
+              "name": "removeChildren",
+              "description": "Removes a child or children from the requested node. Pass `children` a\nsingle object to remove one child, an array of objects to remove multiple\nchildren, or null to remove all children.\n\nThe `node` should be a direct reference to one of the objects already\nin the asset graph (e.g. one of the `items` objects or another node\nadded through the `addChildren` API). To add children to the root\nof the graph, call with `node` as null.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 197,
+                  "column": 4
+                },
+                "end": {
+                  "line": 224,
+                  "column": 5
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "node",
+                  "type": "(Object|null)"
+                },
+                {
+                  "name": "children",
+                  "type": "(Object|Array.<Object>)"
+                },
+                {
+                  "name": "options"
+                }
+              ]
+            }
+          ],
+          "staticMethods": [],
+          "demos": [],
+          "metadata": {},
+          "sourceRange": {
+            "start": {
+              "line": 12,
+              "column": 2
+            },
+            "end": {
+              "line": 225,
+              "column": 4
+            }
+          },
+          "privacy": "public",
+          "name": "PxAppBehavior.AssetGraph",
+          "attributes": [
+            {
+              "name": "items",
+              "description": "An array of objects that will be used to build the nav. Top-level items\ncan optionally have one level of children beneath them, turning the\ntop-level item into a dropdown group.\n\nSelecting an item automatically selects its parent if it has one.\nFor the navigation, top-level items with children cannot be selected\ndirectly - instead, users can select a child item and its parent will\nalso be marked as selected (and set as the `selectedItemParent`).\n\nAll items should have at least the following properties:\n\n- {String} id - A unique string that identifies the item. Should only\ncontain valid ASCII characters. It's recommended to only use URI-safe\ncharacters to allow for easy binding to the URL. Examples: 'home' or 'alerts'\n- {String} label - A short, human-readable text label for the item.\n\nThe following optional properties can be used:\n\n- {Array} children - An array of subitem objects that are children of\nthe item. Each child item should also have an `id` and `label`, and\nmay have its own child items.\n- {Boolean=false} isTerminal - If `true` the item cannot have any children.\nTerminal items can only be selected, not activated (navigated into).\nItems with children should not be marked as terminal.\n- {Boolean=false} isExhausted - If `true` the item does not have any\nadditional children available to load from a remote data source.\n- {Boolean=true} isSelectable - If `false` the item can only be activated\n(navigated into) to view its children, not selected.\n\nThe following is an example of a list of valid nav items:\n\n    [\n      { \"label\" : \"Home\",   \"id\" : \"home\" },\n      { \"label\" : \"Alerts\", \"id\" : \"alerts\" },\n      { \"label\" : \"Assets\", \"id\" : \"assets\", \"children\": [\n        { \"label\" : \"Asset #1\", \"id\" : \"a1\" },\n        { \"label\" : \"Asset #2\", \"id\" : \"a2\" }\n      ] }\n    ]\n\nThe item property names can be changed, e.g. to choose a different item\nproperty to serve as a unique ID. See the `keys` property for details.",
+              "sourceRange": {
+                "start": {
+                  "line": 58,
+                  "column": 6
+                },
+                "end": {
+                  "line": 60,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "type": "Array"
+            },
+            {
+              "name": "keys",
+              "description": "Changes the item properties (keys) that will be used internally to find\neach item's unique ID, label, and child list.\n\nUse this property if you already have a predefined data schema for your\napplication and want to customize this component to match your schema.\nOtherwise, it's recommended to leave the defaults.\n\nThe following properties can be set:\n\n- id: [default='id'] a unique ID for the item\n- label: [default='label'] a human-readable label\n- children: [default='children'] an array of child items\n\nIf you want to configure any keys, you must set all the keys. If any\nof the keys are not defined, the navigation will fail.\n\nFor example, the schema could be changed to the following:\n\n    {\n      \"id\" : \"assetId\",\n      \"label\" : \"assetName\",\n      \"children\" : \"subAssets\"\n    }",
+              "sourceRange": {
+                "start": {
+                  "line": 88,
+                  "column": 6
+                },
+                "end": {
+                  "line": 98,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "type": "Object"
+            }
+          ],
+          "events": [],
+          "styling": {
+            "cssVariables": [],
+            "selectors": []
+          },
+          "slots": []
+        },
+        {
+          "description": "Adds component-level behaviors to deal with selecting and deselecting\nassets in an AssetGraph.\n\nSingle-select mode is enabled by default. To enable multi-select mode\npermanently, add the following static property to your component:\n\n```\nPolymer({\n  is: 'x-component-name',\n  behaviors: [PxAppBehavior.AssetSelectable],\n  multiSelect: true,\n  properties: {},\n  ...\n});\n```\n\nTo allow the developer using your component to enable or disable multi-select\nmode dynamically via an attribute, add the following property to your component\n(ensure the property is named `multiSelect`, is a Boolean, and has the observer\n`_toggleMultiSelect`):\n\n```\nPolymer({\n  is: 'x-component-name',\n  behaviors: [PxAppBehavior.AssetSelectable],\n  properties: {\n    multiSelect: {\n      type: Boolean,\n      value: false,\n      observer: '_toggleMultiSelect'\n    }\n  },\n  ...\n});\n```",
+          "summary": "",
+          "path": "px-app-asset/px-app-asset-behavior-selectable.html",
+          "properties": [
+            {
+              "name": "selected",
+              "type": "Object",
+              "description": "A reference to the currently selected item. Use this property to set the\nselected item directly. The object passed to this property must be a\ndirect reference to one of the `items` objects. Changing this property\nwill automatically update the `selectedRoute`.\n\nSee `selectedRoute` for an alternative way to select items.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 56,
+                  "column": 8
+                },
+                "end": {
+                  "line": 62,
+                  "column": 9
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "notify": true
+                }
+              }
+            },
+            {
+              "name": "selectedRoute",
+              "type": "Array",
+              "description": "The route to the selected item as an array of strings. Use this property\nto set the selected item by route, or to bind to updates when the\nselected item is changed. Changing this property will automatically\nupdate the `selected` item.\n\nThe route array starts at the top of the graph and ends with the selected\nitem. Each route entry is a string that corresponds to the unique ID\nof an item. The item property that this unique ID will be taken from can be\nconfigured with the `key` property. By default, it will be `item.id`.\n\n\nFor example, given the following graph:\n\n    [\n      {\n        \"label\" : \"Dashboards\",\n        \"id\" : \"dash\",\n        \"children\" : [\n          { \"label\" : \"Truck Statuses\", \"id\" : \"trucks\" },\n          { \"label\" : \"Generator Alerts\", \"id\" : \"generators\" }\n        ]\n      },\n    ]\n\nTo select the \"Truck Statuses\" page, set the route array to:\n\n    [\"dash\", \"trucks\"]\n\nIf the user then selects the \"Generator Alerts\" item, the route array\nwould be replaced with a new array with the following entries:\n\n    [\"dash\", \"generators\"]",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 99,
+                  "column": 8
+                },
+                "end": {
+                  "line": 105,
+                  "column": 9
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "notify": true
+                }
+              }
+            },
+            {
+              "name": "selectedMeta",
+              "type": "Object",
+              "description": "[Read-only] Helpful metadata about the selected item.\n\nSINGLE-SELECT MODE: An object with the following information about\nthe selected item (if no selected item, all values will be null):\n\n- {Object} `item`: Reference to the selected item\n- {Array} `path`: The path to the selected item as an array. Begins with\nthe top-most item in the graph and ends with the selected item. It\nthe selected item is at the top of the graph, the array will include\nonly the selected item.\n- {Array} `route`: Route to the selected item (see `selectedRoute`\nfor more information on how this is created)\n- {Object} `parent`: Reference to the selected item's parent,\nor `null` if it has no parent\n- {Array} `children`: Reference to the selected item's children,\nor empty array if it has no children\n- {Array} `siblings`: Reference to the selected item's siblings (e.g.\nthe children of its parent) or an array with only the selected item\nif it has no children.\n\nMUTLI-SELECT MODE: An array of objects with metadata about each\nselected item. Each object will be contain the same values as above.\nIf no items are selected, all values will be null.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 132,
+                  "column": 8
+                },
+                "end": {
+                  "line": 138,
+                  "column": 9
+                }
+              },
+              "metadata": {
+                "polymer": {
+                  "notify": true,
+                  "readOnly": true
+                }
+              },
+              "defaultValue": "null"
+            },
+            {
+              "name": "_multiSelect",
+              "type": "boolean",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 160,
+                  "column": 6
+                },
+                "end": {
+                  "line": 160,
+                  "column": 25
+                }
+              },
+              "metadata": {
+                "polymer": {}
+              }
+            }
+          ],
+          "methods": [
+            {
+              "name": "created",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 141,
+                  "column": 6
+                },
+                "end": {
+                  "line": 147,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "multiSelect",
+              "description": "",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 166,
+                  "column": 6
+                },
+                "end": {
+                  "line": 171,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "val"
+                }
+              ]
+            },
+            {
+              "name": "_toggleMultiSelect",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 173,
+                  "column": 6
+                },
+                "end": {
+                  "line": 181,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "allowMultiSelect"
+                }
+              ]
+            },
+            {
+              "name": "select",
+              "description": "Selects an item. Call with an object that is a direct reference to one\nof the `items` objects.\n\nIf multi-select mode is enabled, call with an object to select a single\nitem or an array of objects to select multiple items.\n\nAn optional source of the change can be provided as a string.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 196,
+                  "column": 6
+                },
+                "end": {
+                  "line": 218,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "item",
+                  "type": "(Object|Array)"
+                },
+                {
+                  "name": "source",
+                  "type": "String",
+                  "defaultValue": "'METHOD'"
+                }
+              ],
+              "return": {
+                "type": "(Object|Array)",
+                "desc": "The next `selected` item or items"
+              }
+            },
+            {
+              "name": "deselect",
+              "description": "Deselects an item. Call with a direct reference to the selected item\nor with `null` to deselect whatever is selected.\n\nIf multi-select mode is enabled, call with a direct reference to one of\nthe selected items to deselect it, or an array of selected items to\ndeselect multiple, or `null` to deselect all items.",
+              "privacy": "public",
+              "sourceRange": {
+                "start": {
+                  "line": 232,
+                  "column": 6
+                },
+                "end": {
+                  "line": 251,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "item",
+                  "type": "(Object|Array|null)"
+                },
+                {
+                  "name": "source",
+                  "type": "String",
+                  "defaultValue": "'METHOD'"
+                }
+              ],
+              "return": {
+                "type": "(Object|Array|null)",
+                "desc": "The remaining `selected` items or null"
+              }
+            },
+            {
+              "name": "_getSelectedMeta",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 253,
+                  "column": 6
+                },
+                "end": {
+                  "line": 271,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "selected"
+                }
+              ]
+            },
+            {
+              "name": "_assetSelectedByEvent",
+              "description": "The event `detail.item` should be a reference to an item in the asset graph.",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 276,
+                  "column": 6
+                },
+                "end": {
+                  "line": 281,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "evt"
+                }
+              ]
+            },
+            {
+              "name": "_assetDeselectedByEvent",
+              "description": "The event `detail.item` should be a reference to an item in the asset graph.",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 286,
+                  "column": 6
+                },
+                "end": {
+                  "line": 291,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "evt"
+                }
+              ]
+            },
+            {
+              "name": "_selectedRouteChanged",
+              "description": "Should only sync changes to `selectedRoute` when necessary to avoid\ninfinite loop of `selected` observer triggering `selectedRoute` observer.",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 297,
+                  "column": 6
+                },
+                "end": {
+                  "line": 307,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "ref"
+                }
+              ]
+            },
+            {
+              "name": "_updateSelectedFromRoute",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 309,
+                  "column": 6
+                },
+                "end": {
+                  "line": 326,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "route"
+                }
+              ]
+            },
+            {
+              "name": "_updateSelectedFromRouteMulti",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 328,
+                  "column": 6
+                },
+                "end": {
+                  "line": 351,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "route"
+                }
+              ]
+            },
+            {
+              "name": "_selectedChanged",
+              "description": "Should only sync changes to `selectedRoute` when necessary to avoid\ninfinite loop of `selected` observer triggering `selectedRoute` observer.",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 357,
+                  "column": 5
+                },
+                "end": {
+                  "line": 367,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "ref"
+                }
+              ]
+            },
+            {
+              "name": "_checkIfEmpty",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 369,
+                  "column": 6
+                },
+                "end": {
+                  "line": 372,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "item"
+                }
+              ]
+            },
+            {
+              "name": "_updateSelectedRoute",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 374,
+                  "column": 6
+                },
+                "end": {
+                  "line": 394,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "selected"
+                }
+              ]
+            },
+            {
+              "name": "_updateSelectedRouteMulti",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 396,
+                  "column": 6
+                },
+                "end": {
+                  "line": 413,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "selected"
+                }
+              ]
+            },
+            {
+              "name": "__selectInitialAssets",
+              "description": "",
+              "privacy": "private",
+              "sourceRange": {
+                "start": {
+                  "line": 415,
+                  "column": 6
+                },
+                "end": {
+                  "line": 428,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": []
+            },
+            {
+              "name": "_routeIsDifferent",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 430,
+                  "column": 6
+                },
+                "end": {
+                  "line": 437,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "r1"
+                },
+                {
+                  "name": "r2"
+                }
+              ]
+            },
+            {
+              "name": "_selectAsset",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 439,
+                  "column": 6
+                },
+                "end": {
+                  "line": 453,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "item"
+                },
+                {
+                  "name": "source"
+                }
+              ]
+            },
+            {
+              "name": "_deselectAsset",
+              "description": "",
+              "privacy": "protected",
+              "sourceRange": {
+                "start": {
+                  "line": 477,
+                  "column": 6
+                },
+                "end": {
+                  "line": 492,
+                  "column": 7
+                }
+              },
+              "metadata": {},
+              "params": [
+                {
+                  "name": "item"
+                },
+                {
+                  "name": "source"
+                }
+              ]
+            }
+          ],
+          "staticMethods": [],
+          "demos": [],
+          "metadata": {},
+          "sourceRange": {
+            "start": {
+              "line": 46,
+              "column": 4
+            },
+            "end": {
+              "line": 515,
+              "column": 6
+            }
+          },
+          "privacy": "public",
+          "name": "PxAppBehavior.AssetSelectable",
+          "attributes": [
+            {
+              "name": "selected",
+              "description": "A reference to the currently selected item. Use this property to set the\nselected item directly. The object passed to this property must be a\ndirect reference to one of the `items` objects. Changing this property\nwill automatically update the `selectedRoute`.\n\nSee `selectedRoute` for an alternative way to select items.",
+              "sourceRange": {
+                "start": {
+                  "line": 56,
+                  "column": 8
+                },
+                "end": {
+                  "line": 62,
+                  "column": 9
+                }
+              },
+              "metadata": {},
+              "type": "Object"
+            },
+            {
+              "name": "selected-route",
+              "description": "The route to the selected item as an array of strings. Use this property\nto set the selected item by route, or to bind to updates when the\nselected item is changed. Changing this property will automatically\nupdate the `selected` item.\n\nThe route array starts at the top of the graph and ends with the selected\nitem. Each route entry is a string that corresponds to the unique ID\nof an item. The item property that this unique ID will be taken from can be\nconfigured with the `key` property. By default, it will be `item.id`.\n\n\nFor example, given the following graph:\n\n    [\n      {\n        \"label\" : \"Dashboards\",\n        \"id\" : \"dash\",\n        \"children\" : [\n          { \"label\" : \"Truck Statuses\", \"id\" : \"trucks\" },\n          { \"label\" : \"Generator Alerts\", \"id\" : \"generators\" }\n        ]\n      },\n    ]\n\nTo select the \"Truck Statuses\" page, set the route array to:\n\n    [\"dash\", \"trucks\"]\n\nIf the user then selects the \"Generator Alerts\" item, the route array\nwould be replaced with a new array with the following entries:\n\n    [\"dash\", \"generators\"]",
+              "sourceRange": {
+                "start": {
+                  "line": 99,
+                  "column": 8
+                },
+                "end": {
+                  "line": 105,
+                  "column": 9
+                }
+              },
+              "metadata": {},
+              "type": "Array"
+            },
+            {
+              "name": "selected-meta",
+              "description": "[Read-only] Helpful metadata about the selected item.\n\nSINGLE-SELECT MODE: An object with the following information about\nthe selected item (if no selected item, all values will be null):\n\n- {Object} `item`: Reference to the selected item\n- {Array} `path`: The path to the selected item as an array. Begins with\nthe top-most item in the graph and ends with the selected item. It\nthe selected item is at the top of the graph, the array will include\nonly the selected item.\n- {Array} `route`: Route to the selected item (see `selectedRoute`\nfor more information on how this is created)\n- {Object} `parent`: Reference to the selected item's parent,\nor `null` if it has no parent\n- {Array} `children`: Reference to the selected item's children,\nor empty array if it has no children\n- {Array} `siblings`: Reference to the selected item's siblings (e.g.\nthe children of its parent) or an array with only the selected item\nif it has no children.\n\nMUTLI-SELECT MODE: An array of objects with metadata about each\nselected item. Each object will be contain the same values as above.\nIf no items are selected, all values will be null.",
+              "sourceRange": {
+                "start": {
+                  "line": 132,
+                  "column": 8
+                },
+                "end": {
+                  "line": 138,
+                  "column": 9
+                }
+              },
+              "metadata": {},
+              "type": "Object"
+            }
+          ],
+          "events": [
+            {
+              "type": "CustomEvent",
+              "name": "px-app-asset-selected",
+              "description": "px-app-asset-selected",
+              "metadata": {}
+            },
+            {
+              "type": "CustomEvent",
+              "name": "selected-changed",
+              "description": "Fired when the `selected` property changes.",
+              "metadata": {}
+            },
+            {
+              "type": "CustomEvent",
+              "name": "selected-route-changed",
+              "description": "Fired when the `selectedRoute` property changes.",
+              "metadata": {}
+            },
+            {
+              "type": "CustomEvent",
+              "name": "selected-meta-changed",
+              "description": "Fired when the `selectedMeta` property changes.",
+              "metadata": {}
+            }
+          ],
+          "styling": {
+            "cssVariables": [],
+            "selectors": []
+          },
+          "slots": []
+        }
+      ]
+    }
+  },
+  "classes": [
+    {
+      "description": "",
+      "summary": "",
+      "path": "px-app-asset/px-app-asset-behavior-graph.es6.js",
+      "properties": [],
+      "methods": [
+        {
+          "name": "_node",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 246,
+              "column": 4
+            },
+            "end": {
+              "line": 254,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "object"
+            }
+          ]
+        },
+        {
+          "name": "_getKey",
+          "description": "",
+          "privacy": "protected",
+          "sourceRange": {
+            "start": {
+              "line": 256,
+              "column": 4
+            },
+            "end": {
+              "line": 258,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "key"
+            },
+            {
+              "name": "val"
+            }
+          ]
+        },
+        {
+          "name": "hasNode",
+          "description": "Checks if the node is in the graph.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 266,
+              "column": 4
+            },
+            "end": {
+              "line": 271,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "node",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "type": "boolean"
+          }
+        },
+        {
+          "name": "getInfo",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 273,
+              "column": 4
+            },
+            "end": {
+              "line": 300,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "node"
+            },
+            {
+              "name": "routeKey"
+            }
+          ]
+        },
+        {
+          "name": "getParent",
+          "description": "Returns a reference to the node's parent. If the node has no parent or is\nnot in the graph, returns null.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 309,
+              "column": 4
+            },
+            "end": {
+              "line": 315,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "node",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "type": "(Object|null)"
+          }
+        },
+        {
+          "name": "hasSiblings",
+          "description": "This method returns whether or not the passed in item as any siblings.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 321,
+              "column": 4
+            },
+            "end": {
+              "line": 324,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "node",
+              "type": "Object"
+            }
+          ]
+        },
+        {
+          "name": "getSiblings",
+          "description": "Returns a reference to the node's siblings (the children of its parent).\nThe returned array includes the node.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 333,
+              "column": 4
+            },
+            "end": {
+              "line": 338,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "node",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "type": "(Array.<Object>|null)"
+          }
+        },
+        {
+          "name": "getPath",
+          "description": "Returns an array of ancestor nodes from the root of the graph to the requested\nnode. The returned array includes the node.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 347,
+              "column": 4
+            },
+            "end": {
+              "line": 353,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "node",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "type": "(Array.<Object>|null)"
+          }
+        },
+        {
+          "name": "getRoute",
+          "description": "Returns an array of unique IDs for each ancestor of the requested node\nstarting at the root of the graph and ending with the requested node.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 362,
+              "column": 4
+            },
+            "end": {
+              "line": 375,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "node",
+              "type": "Object"
+            },
+            {
+              "name": "routeKey"
+            }
+          ],
+          "return": {
+            "type": "(Array.<string>|null)"
+          }
+        },
+        {
+          "name": "getNodeAtRoute",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 377,
+              "column": 4
+            },
+            "end": {
+              "line": 401,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "route"
+            },
+            {
+              "name": "routeKey"
+            }
+          ]
+        },
+        {
+          "name": "getChildren",
+          "description": "Returns a reference to the requested node's children. The returned array\nwill be empty if no children are defined.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 410,
+              "column": 4
+            },
+            "end": {
+              "line": 416,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "node",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "type": "(Array.<Object>|null)"
+          }
+        },
+        {
+          "name": "getRootChildren",
+          "description": "Returns a reference to the root node's children. The returned array will\nbe empty if no children are defined.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 424,
+              "column": 4
+            },
+            "end": {
+              "line": 430,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [],
+          "return": {
+            "type": "(Array.<Object>|null)"
+          }
+        },
+        {
+          "name": "hasChildren",
+          "description": "Checks if the node has any children.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 438,
+              "column": 4
+            },
+            "end": {
+              "line": 444,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "node",
+              "type": "Object"
+            }
+          ],
+          "return": {
+            "type": "(boolean|null)"
+          }
+        },
+        {
+          "name": "addChildren",
+          "description": "Adds a child or children to the requested node. Can pass a single object\nto add one child, or an array of objects to add multiple children.\nIf `node` is null, the child object(s) will be added to the root of the graph.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 455,
+              "column": 4
+            },
+            "end": {
+              "line": 492,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "node",
+              "type": "(Object|null)"
+            },
+            {
+              "name": "children",
+              "type": "(Object|Array.<Object>)"
+            },
+            {
+              "name": "options"
+            }
+          ],
+          "return": {
+            "type": "(Array.<Object>|undefined)",
+            "desc": "the updated child array of the node"
+          }
+        },
+        {
+          "name": "removeChildren",
+          "description": "Removes a child or children from the requested node. Can pass a single object\nby reference to remove one child, or an array of objects by reference to\nremove multiple children. If `node` is null, the child object(s) will be\nremoved from the root of the graph.",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 504,
+              "column": 4
+            },
+            "end": {
+              "line": 524,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "node",
+              "type": "(Object|null)"
+            },
+            {
+              "name": "children",
+              "type": "(Object|Array.<Object>)"
+            },
+            {
+              "name": "options"
+            }
+          ],
+          "return": {
+            "type": "(Array.<Object>|undefined)",
+            "desc": "the updated child array of the node"
+          }
+        },
+        {
+          "name": "isExhausted",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 526,
+              "column": 4
+            },
+            "end": {
+              "line": 533,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "node"
+            }
+          ]
+        },
+        {
+          "name": "setExhausted",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 535,
+              "column": 4
+            },
+            "end": {
+              "line": 543,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "node"
+            },
+            {
+              "name": "isExhausted"
+            }
+          ]
+        },
+        {
+          "name": "isTerminal",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 545,
+              "column": 4
+            },
+            "end": {
+              "line": 555,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "node"
+            }
+          ]
+        },
+        {
+          "name": "setTerminal",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 557,
+              "column": 4
+            },
+            "end": {
+              "line": 568,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "node"
+            },
+            {
+              "name": "isTerminal"
+            }
+          ]
+        },
+        {
+          "name": "isSelectable",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 570,
+              "column": 4
+            },
+            "end": {
+              "line": 583,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "node"
+            }
+          ]
+        },
+        {
+          "name": "setSelectable",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 585,
+              "column": 4
+            },
+            "end": {
+              "line": 593,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "node"
+            },
+            {
+              "name": "isSelectable"
+            }
+          ]
+        }
+      ],
+      "staticMethods": [
+        {
+          "name": "pathToRoute",
+          "description": "",
+          "privacy": "public",
+          "sourceRange": {
+            "start": {
+              "line": 595,
+              "column": 4
+            },
+            "end": {
+              "line": 597,
+              "column": 5
+            }
+          },
+          "metadata": {},
+          "params": [
+            {
+              "name": "path"
+            },
+            {
+              "name": "routeKey"
+            }
+          ]
+        }
+      ],
+      "demos": [],
+      "metadata": {},
+      "sourceRange": {
+        "start": {
+          "line": 228,
+          "column": 2
+        },
+        "end": {
+          "line": 598,
+          "column": 3
+        }
+      },
+      "privacy": "public",
+      "name": "AssetGraph"
+    }
+  ]
+}

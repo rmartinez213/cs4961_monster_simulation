@@ -1,0 +1,75 @@
+<!--
+Copyright (c) 2018, General Electric
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Map Demo -- Custom Marker Group Colors</title>
+
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../polymer/polymer.html"/>
+
+  <!-- Importing px-map subcomponents... -->
+  <link rel="import" href="../px-map.html"/>
+  <link rel="import" href="../px-map-tile-layer.html"/>
+  <link rel="import" href="../px-map-marker-group.html"/>
+
+  <!-- Importing for the demo only... -->
+  <link rel="import" href="../../iron-ajax/iron-ajax.html"/>
+
+  <style>
+    body {
+      margin: 0;
+      box-sizing: border-box;
+    }
+    .wrap {
+      display: flex;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <custom-style>
+    <style is="custom-style">
+      html {
+        --px-map-color-custom-0: lime;
+        --px-map-color-custom-1: crimson;
+        --px-map-color-custom-2: cornflowerblue;
+        --px-map-color-custom-3: salmon;
+        --px-map-color-custom-4: hotpink;
+        --px-map-color-custom-5: cyan;
+        --px-map-color-custom-6: sandybrown;
+      }
+    </style>
+  </custom-style>
+
+  <section class="wrap">
+    <dom-bind>
+      <template is="dom-bind">
+        <!-- Load `geoJSON` for markers with iron-ajax -->
+        <iron-ajax url="marker-clusters-geojson-custom-colors.json" last-response="{{geoJSON}}" auto></iron-ajax>
+
+        <px-map fit-to-markers flex-to-size>
+          <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
+
+          <!-- Data-bind the output of the iron-ajax call `geoJSON` to the marker group's `data` attribute -->
+          <px-map-marker-group name="Plaques" data="{{geoJSON}}"></px-map-marker-group>
+        </px-map>
+      </template>
+    </dom-bind>
+  </section>
+</body>
+</html>

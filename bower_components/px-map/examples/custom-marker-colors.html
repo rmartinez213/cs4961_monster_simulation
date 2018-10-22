@@ -1,0 +1,91 @@
+<!--
+Copyright (c) 2018, General Electric
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Map Demo -- Custom Marker Colors</title>
+
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../../polymer/polymer.html"/>
+
+  <!-- Importing px-map subcomponents... -->
+  <link rel="import" href="../px-map.html"/>
+  <link rel="import" href="../px-map-tile-layer.html"/>
+  <link rel="import" href="../px-map-layer-group.html"/>
+  <link rel="import" href="../px-map-marker-symbol.html"/>
+  <link rel="import" href="../px-map-marker-static.html"/>
+  <link rel="import" href="../px-map-popup-data.html"/>
+
+  <!-- Importing for the demo only... -->
+  <link rel="import" href="../../iron-icons/maps-icons.html"/>
+
+  <style>
+    body {
+      margin: 0;
+    }
+    .wrap {
+      display: flex;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <custom-style>
+    <style is="custom-style">
+      html {
+        --px-map-color-custom-0 : red;
+      }
+      px-map * {
+        --px-map-color-custom-0 : salmon;
+        --px-map-color-custom-1 : hotpink;
+        --px-map-color-custom-2 : lime;
+        --px-map-color-custom-3 : cornflowerblue;
+      }
+      .special-icon {
+        --px-map-color-custom-3 : purple;
+      }
+    </style>
+  </custom-style>
+
+  <section class="wrap">
+    <px-map fit-to-markers flex-to-size>
+      <px-map-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></px-map-tile-layer>
+      <px-map-layer-group name="BART Stations">
+        <px-map-marker-symbol lat="38.0154" lng="-121.9424" type="custom-0" icon="px-obj:truck">
+          <px-map-popup-data title="BART: Pittsburg/Baypoint" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-symbol>
+
+        <px-map-marker-static lat="38.0035" lng="-122.0247" type="custom-1">
+          <px-map-popup-data title="BART: North Concord/Martinez" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.9741" lng="-122.0282" type="custom-2">
+          <px-map-popup-data title="BART: Concord" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.9269" lng="-122.0559" type="custom-3">
+          <px-map-popup-data title="BART: Pleasant Hill" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+
+        <px-map-marker-static lat="37.9049" lng="-122.0671" type="custom-3" class="special-icon">
+          <px-map-popup-data title="BART: Walnut Creek" data='{ "Description" : "NSS 177 ROAD", "Milepost" : "50", "DIV/SUB" : "Bakersfield, CA", "Next Test" : "9/12/16" }'></px-map-popup-data>
+        </px-map-marker-static>
+      </px-map-layer-group>
+    </px-map>
+  </section>
+</body>
+</html>

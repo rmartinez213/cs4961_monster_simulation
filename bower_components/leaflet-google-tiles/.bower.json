@@ -1,0 +1,14 @@
+{
+  "name": "leaflet-google-tiles",
+  "homepage": "https://github.com/ge-smallworld/leaflet-google-layer",
+  "version": "1.0.0",
+  "_release": "1.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.0.0",
+    "commit": "8f2885e5e4ba0dcab78ccdd0ccef92b862afb734"
+  },
+  "_source": "https://github.com/ge-smallworld/leaflet-google-layer.git",
+  "_target": "^1.0.0",
+  "_originalSource": "ge-smallworld/leaflet-google-layer"
+}

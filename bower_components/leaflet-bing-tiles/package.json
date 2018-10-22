@@ -1,0 +1,27 @@
+{
+  "name": "leaflet-bing-tiles",
+  "version": "1.0.2",
+  "description": "Bing Maps Layer for Leaflet v1.0.0",
+  "main": "leaflet-bing-tiles.js",
+  "contributors": [
+    "David Leonard",
+    "Based on work by Gregor MacLennan"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "leaflet",
+    "bing"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidrleonard/leaflet-bing-tiles.git"
+  },
+  "bugs": {
+    "url": "https://github.com/davidrleonard/leaflet-bing-tiles/issues"
+  },
+  "homepage": "https://github.com/davidrleonard/leaflet-bing-tiles",
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}
