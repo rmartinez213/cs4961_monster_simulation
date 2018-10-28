@@ -1,0 +1,52 @@
+[
+    {
+        "monsterId": 1,
+        "monsterName": "Godzilla",
+        "Type": ""
+    },
+    {
+        "monsterId": 2,
+        "monsterName": "Kaiju and Dracula",
+        "Type": ""
+    },
+    {
+        "monsterId": 3,
+        "monsterName": "Vampire",
+        "Type": ""
+    },
+    {
+        "monsterId": 4,
+        "monsterName": "Manticore",
+        "Type": ""
+    },
+    {
+        "monsterId": 5,
+        "monsterName": "Werewolf",
+        "Type": ""
+    },
+    {
+        "monsterId": 6,
+        "monsterName": "Cyclops",
+        "Type": ""
+    },
+    {
+        "monsterId": 7,
+        "monsterName": "Gremlin",
+        "Type": ""
+    },
+    {
+        "monsterId": 8,
+        "monsterName": "Bigfoot",
+        "Type": ""
+    },
+    {
+        "monsterId": 9,
+        "monsterName": "Cerberus",
+        "Type": ""
+    },
+    {
+        "monsterId": 10,
+        "monsterName": "Mummy",
+        "Type": "Spontaneous"
+    }
+]

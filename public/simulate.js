@@ -23,11 +23,14 @@ socket.on('simulated-data', function (data){
     var deaths = data.O;
     var injuries = data.Q;
     
-    console.log(id + " " + flag_tsunami + " " + year + " " + month + " " + day + " " + hour + " " + minute + " " + second + " " + country + " " + location_name); //Test purposes
+    var displaydata = id + " " + flag_tsunami + " " + year + " " + month + " " + day + " " + hour + " " + minute + " " + second + " " + country + " " + location_name; //Test purposes
     
-    
+    output.innerHTML = displaydata ; //Display data onto html page
 
-    output.innerHTML = data.A ; //Display data onto html page
+    document.write('<px-map-marker-static id="Godzilla" style="display:none;" lat="-44.245866" lng="-13.772970" type="info"> <px-map-popup-data title="Godzilla" data=\'{"Kills":"2000","damage":"etc","magnitude":"8.0"}\'> </px-map-popup-data> </px-map-marker-static>');
+
+  
+    
 });
 
 

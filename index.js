@@ -25,8 +25,7 @@ var io = socket(server);
 
 io.on('connection',function(socket){ // Fires callback function when client connects
 	if(simulating){
-        console.log('Simulating to new client...');
-        
+        console.log('Simulating to new client...');  
 	}
 
 	else{
