@@ -65,13 +65,20 @@
             var longitude = data.N;
             var deaths = data.O;
             var injuries = data.Q;
+            var monsterId = data.monsterId;
+            var monsterName = data.monsterName;
+            var reportEmail = data.email;
 
-            var displaydata = id + " " + flag_tsunami + " " + year + " " + month + " " + day + " " + hour + " " + minute + " " + second + " " + country + " " + location_name; //Test purposes
+            var displaydata = id + " " + flag_tsunami + " " + year + " " + month 
+                + " " + day + " " + hour + " " + minute + " " + second + " " + country 
+                + " " + location_name; //Test purposes
 
 
             //Simulates data points to map
             output.innerHTML += '<px-map-marker-static id="Godzilla" style="display:none;" lat="' + latitude + '" lng="' + longitude + '" type="info">' +
-                '<px-map-popup-data title="Godzilla" data=\'{"Year":"' + year + '","Country":"' + country + '","Location":"' + location_name + '","magnitude":"8.0"}\'>' +
+                '<px-map-popup-data title="'  + monsterName + '" data=\'{"Year":"' + year + '","Country":"' + country 
+                + '","Location":"' + location_name + '","Reporter":"' + reportEmail
+                + '","magnitude":"8.0"}\'>' +
                 '</px-map-popup-data> </px-map-marker-static>';
         });
 
