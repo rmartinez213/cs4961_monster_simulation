@@ -109,6 +109,14 @@ function createNewJSON(result){
 
 function merge(eventObj, monsterObj, reportObj)
 {
+    let x = randomNumber(1000, 1500);
+    let deaths = eventObj.O;
+
+    if (deaths == "")
+    {
+        deaths = randomNumber(0, 1000);
+        eventObj.O = deaths.toString();
+    }
     result = Object.assign(eventObj, monsterObj, reportObj);
 }
 
@@ -121,4 +129,4 @@ exports.start = function() { //<== comment this once if can't create combined.js
     createNewJSON(result);
 }
 
-//start();  ..<== uncomment this once if can't create combined.json from index
+//start();  //<== uncomment this once if can't create combined.json from index

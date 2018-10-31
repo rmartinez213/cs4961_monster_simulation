@@ -48,7 +48,7 @@ function generate(){
 
 	io.sockets.emit('simulated-data', obj[id]); 
     console.log("Sending again...")
-    console.log(obj[id]); //Test purposes
+    console.log("printing ", obj[id]); //Test purposes
 	setTimeout(generate, 5000);
 }
 

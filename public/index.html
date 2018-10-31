@@ -76,8 +76,11 @@
 
             //Simulates data points to map
             output.innerHTML += '<px-map-marker-static id="Godzilla" style="display:none;" lat="' + latitude + '" lng="' + longitude + '" type="info">' +
-                '<px-map-popup-data title="'  + monsterName + '" data=\'{"Year":"' + year + '","Country":"' + country 
-                + '","Location":"' + location_name + '","Reporter":"' + reportEmail
+                '<px-map-popup-data title="'  + monsterName + '" data=\'{"Year":"' + year 
+                + '","Country":"' + country 
+                + '","Location":"' + location_name 
+                + '","Deaths":"' + deaths
+                + '","Reporter":"' + reportEmail
                 + '","magnitude":"8.0"}\'>' +
                 '</px-map-popup-data> </px-map-marker-static>';
         });
