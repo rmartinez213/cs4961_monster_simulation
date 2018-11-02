@@ -1,16 +1,150 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>Websocket</title>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
-	<script src="simulate.js"></script>
-    <link href="styles.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>
+    <!-- <script src="simulate.js"></script> -->
+    <link href="styles.css" rel="stylesheet" />
 </head>
+
 <body>
 
-    <div id="output"> </div>
+    <base href="https://polygit.org/px-*+PredixDev+*/webcomponentsjs+v1.0.22/polymer+v2.3.1/components/">
+    <script src="webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="polymer/polymer.html" />
+    <link rel="import" href="px-theme/px-theme-styles.html" />
+    <link rel="import" href="px-map-marker-group/px-map-marker-group.html" />
+    <link rel="import" href="px-map/px-map.html" />
+    <link rel="import" href="px-map/px-map-tile-layer.html" />
+    <link rel="import" href="px-map/px-map-marker-group.html" />
+    <link rel="import" href="px-d3-imports/px-polygit-imports-d3.html" />
+    <link rel="import" href="px-map/px-map-popup-data.html" />
+    <link rel="import" href="px-map/px-map-marker-static.html" />
+    <link rel="import" href="px-branding-bar/px-branding-bar.html" />
+    <link rel="import" href="px-simple-horizontal-bar-chart/px-simple-horizontal-bar-chart.html" />
+    <script src="https://d3js.org/d3.v3.min.js"></script>
 
 
+    <custom-style>
+        <style include="px-theme-styles" is="custom-style"></style>
+    </custom-style>
+    <px-branding-bar application-title="Predix Design System"></px-branding-bar>
+
+    <div id="outputdata"></div>
+
+
+
+    <div id="output1">
+
+    </div>
+
+    <div style="height:1200px; width:3000px; display:flex">
+
+        <px-map zoom="3" flex-to-size lat="47.68757916850813" lng="-2.0626831054687504">
+
+            <div id="output">
+
+            </div>
+
+
+            <px-map-tile-layer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'>
+            </px-map-tile-layer>
+        </px-map>
+    </div>
+
+
+
+    <script>
+        //Create a connection
+        var socket = io.connect('http://localhost:4001');
+
+        var deathsKaiju = 0; // id 0`
+        var vampire = 0; // id 1
+        var manticore = 0; // id 2
+        var godzilla = 0; //id 3
+        var cyclops = 0; // id 4
+        var bigfoot = 0; //id 5
+
+        socket.on('simulated-data', function (data) {
+
+            //console.log(data); //print whole data object (test purposes)
+
+            var id = data.A;
+            var flag_tsunami = data.B;
+            var year = data.C;
+            var month = data.D;
+            var day = data.E;
+            var hour = data.F;
+            var minute = data.G;
+            var second = data.H;
+            var magnitude = data.I;
+            var intensity = data.J;
+            var country = data.K;
+            var location_name = data.L;
+            var latitude = data.M;
+            var longitude = data.N;
+            var deaths = data.O;
+            var injuries = data.Q;
+            var monsterId = data.monsterId;
+            var monsterName = data.monsterName;
+            var reportEmail = data.email;
+
+            var displaydata = id + " " + flag_tsunami + " " + year + " " + month
+                + " " + day + " " + hour + " " + minute + " " + second + " " + country
+                + " " + location_name; //Test purposes
+
+
+            //Simulates data points to map
+            output.innerHTML += '<px-map-marker-static id="Godzilla" style="display:none;" lat="' + latitude + '" lng="' + longitude + '" type="info">' +
+                '<px-map-popup-data title="' + monsterName + '" data=\'{"Year":"' + year
+                + '","Country":"' + country
+                + '","Location":"' + location_name
+                + '","Deaths":"' + deaths
+                + '","Reporter":"' + reportEmail
+                + '","magnitude":"8.0"}\'>'
+                + '</px-map-popup-data> </px-map-marker-static>';
+
+
+
+            switch (monsterId) { // Regulating the count to be higher/lower  
+
+                case '0':
+                    deathsKaiju++;
+                case '1':
+                    vampire++;
+                case '2':
+                    manticore++;
+                case '3':
+                    godzilla++;
+                case '4':
+                    cyclops++
+                case '5':
+                    bigfoot++
+            }
+
+            output1.innerHTML = ' <px-simple-horizontal-bar-chart width="100" height="150" bar-labels="values"'
+                + 'legend-labels=\'["Kaiju and Dracula", "Vampire", "Manticore", "Godzilla", "Cyclops", "Bigfoot"]'
+                + 'chart-data=\'[ ' + deathsKaiju + ','
+                + vampire + ','
+                + manticore + ','
+                + godzilla + ','
+                + cyclops + ','
+                + bigfoot + ','
+
+                + ' ]\'>'
+                + ' </px-simple-horizontal-bar-chart>';
+
+
+
+            console.log(monsterId)
+
+        });
+
+    </script>
 </body>
+
+
+
 </html>
