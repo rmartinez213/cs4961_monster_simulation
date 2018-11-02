@@ -22,32 +22,61 @@
     <link rel="import" href="px-d3-imports/px-polygit-imports-d3.html" />
     <link rel="import" href="px-map/px-map-popup-data.html" />
     <link rel="import" href="px-map/px-map-marker-static.html" />
+    <link rel="import" href="px-branding-bar/px-branding-bar.html" />
+    <link rel="import" href="px-simple-horizontal-bar-chart/px-simple-horizontal-bar-chart.html" />
+    <script src="https://d3js.org/d3.v3.min.js"></script>
 
-    <div id="outputdata">
 
-    </div>
+    <custom-style>
+        <style include="px-theme-styles" is="custom-style"></style>
+    </custom-style>
+    <px-branding-bar application-title="Predix Design System"></px-branding-bar>
 
-    <div style="height:1000px; width:3000px; display:flex">
-        <px-map zoom="4" flex-to-size>
+    <div id="outputdata"></div>
+
+
+
+
+
+    <div style="height:1200px; width:3000px; display:flex">
+
+        <px-map zoom="3" flex-to-size lat="47.68757916850813" lng="-2.0626831054687504">
 
             <div id="output">
 
             </div>
+
 
             <px-map-tile-layer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'>
             </px-map-tile-layer>
         </px-map>
     </div>
 
+    <div id="output1">
+
+    </div>
+
+
 
     <script>
         //Create a connection
         var socket = io.connect('http://localhost:4001');
 
+        let godzilla = 0; //id 1
+        let kaiju_dracula = 0 // id 2
+        let vampire = 0 //id 3
+        let manticore = 0 //id 4
+        let werewolf = 0 //id 5
+        let cyclops = 0 //id 6
+        let gremlin = 0 //id 7
+        let bigfoot = 0 //id 8
+        let cerebus = 0 //id 9
+        let mummy = 0 // id 10
+
 
         socket.on('simulated-data', function (data) {
 
-            //console.log(data); //print whole data object (test purposes) 
+            //console.log(data); //print whole data object (test purposes)
 
             var id = data.A;
             var flag_tsunami = data.B;
@@ -65,17 +94,110 @@
             var longitude = data.N;
             var deaths = data.O;
             var injuries = data.Q;
+            let monsterId = data.monsterId;
+            var monsterName = data.monsterName;
+            var reportEmail = data.email;
 
-            var displaydata = id + " " + flag_tsunami + " " + year + " " + month + " " + day + " " + hour + " " + minute + " " + second + " " + country + " " + location_name; //Test purposes
+            //Test purposes
+            var displaydata = id + " " + flag_tsunami + " " + year + " " + month
+                + " " + day + " " + hour + " " + minute + " " + second + " " + country
+                + " " + location_name; 
 
 
             //Simulates data points to map
             output.innerHTML += '<px-map-marker-static id="Godzilla" style="display:none;" lat="' + latitude + '" lng="' + longitude + '" type="info">' +
-                '<px-map-popup-data title="Godzilla" data=\'{"Year":"' + year + '","Country":"' + country + '","Location":"' + location_name + '","magnitude":"8.0"}\'>' +
-                '</px-map-popup-data> </px-map-marker-static>';
+                '<px-map-popup-data title="' + monsterName + '" data=\'{"Year":"' + year
+                + '","Country":"' + country
+                + '","Location":"' + location_name
+                + '","Deaths":"' + deaths
+                + '","Reporter":"' + reportEmail
+                + '","magnitude":"8.0"}\'>'
+                + '</px-map-popup-data> </px-map-marker-static>';
+
+                
+
+            switch (Number(monsterId)) { // Regulating the count to be higher/lower  
+                case 1:
+                    godzilla++;
+                    console.log("Godzilla: " + godzilla);
+                    break;
+                case 2:
+                    kaiju_dracula++;
+                    console.log("kai_drac: " + kaiju_dracula);
+                    break;
+                case 3:
+                    vampire++;
+                    console.log(vampire);
+                    break;
+                case 4:
+                    manticore++;;
+                    console.log(manticore);
+                    break;
+                case 5:
+                    werewolf++;
+                    console.log(werewolf);
+                    break;
+                case 6:
+                    cyclops++;
+                    console.log(cyclops)
+                    break;
+                case 7:
+                    gremlin++;
+                    console.log(gremlin);
+                    break;
+                case 8:
+                    bigfoot++;
+                    console.log(bigfoot);
+                    break;
+                case 9:
+                    cerebus++;
+                    console.log(cerebus);
+                    break;
+                case 10:
+                    mummy++;
+                    console.log(mummy);
+                    break;
+            }
+
+            //Testing Purposes
+
+            // console.log("godzilla: " + godzilla); //1
+            // console.log("deathskaiju: " + kaiju_dracula); //2
+            // console.log("vampire: " + vampire); //3
+            // console.log("manticore: " + manticore); //4
+            // console.log("werewolf: " + werewolf); //5
+            // console.log("cyclops: " + cyclops); //6
+            // console.log("gremlin: " + gremlin); //7
+            // console.log("bigfoot: " + bigfoot); //8
+            // console.log("cerebus: " + cerebus);// 9
+            // console.log("mummy: " + mummy); //10
+
+
+            output1.innerHTML = ' <px-simple-horizontal-bar-chart ' +
+                'width="auto"' +
+                'height="250"' +
+                'bar-labels="percentage"' +
+                'legend-labels=\'["Godzilla", "Kaiju and Dracula", "Vampire", "Manticore", "Werewolf", "Cyclops", "Gremlin", "Bigfoot", "Cerebus", "Mummy"]\'' +
+                'chart-data=\'[' + godzilla + ',' + kaiju_dracula + ',' + vampire + ',' + manticore + ',' + werewolf + ',' + cyclops + ',' + gremlin + ',' + bigfoot + ',' + cerebus + ',' + mummy + ']\'></px-simple-horizontal-bar-chart>';
+
+
+            //Check format
+            
+            // <px-simple-horizontal-bar-chart
+            //     width="auto"
+            //     height="auto"
+            //     bar-labels="percentage"
+            //     legend-labels='["Bar One","Bar Two","Bar Three","Bar Four","Bar Five","Bar Six"]'
+            //     chart-data='[29,20,15,18,8,10]'>
+            // </px-simple-horizontal-bar-chart>
+
+
+
         });
 
     </script>
 </body>
+
+
 
 </html>
